@@ -1,17 +1,19 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <label for="userName" class="form-label">User name</label>
-      <input type="text" id="userName" class="form-control" [(ngModel)]="userName">
-      <p>{{userName}}</p>
-      <button type="button" class="btn btn-primary" [disabled]="userName === ''" (click)="onReset()">Reset user</button>
-      <hr>
-      <button type="button" class="btn btn-primary" (click)="onServerCreate()">Create server</button>
-      <p *ngIf="serverCreated; else noServer">Server was created! Server name is: {{serverName}}</p>
-      <ng-template #noServer>
-        <p>Server was not created.</p>
-      </ng-template>
-      <app-server></app-server>
+      <app-header></app-header>
+      <div class="row">
+        <div class="col-6">
+          <h3>Shopping list</h3>
+          <hr>
+          <app-shopping-list></app-shopping-list>
+        </div>
+        <div class="col-6">
+          <h3>Recipes</h3>
+          <hr>
+          <app-recipes></app-recipes>
+        </div>
+      </div>
     </div>
   </div>
 </div>
