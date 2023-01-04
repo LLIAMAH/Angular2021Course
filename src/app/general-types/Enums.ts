@@ -9,3 +9,8 @@ export enum AlertType {
   Dark,
   End
 }
+
+export enum ServerStatus {
+  Offline,
+  Online
+}

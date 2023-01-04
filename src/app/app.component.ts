@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {AlertType} from "./general-types/Enums";
 
 @Component({
   selector: 'app-root',
@@ -7,13 +6,18 @@ import {AlertType} from "./general-types/Enums";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Angular2021Course';
-  name = 'Vasiliy';
-  alertType: AlertType;
-  alertMessage: string;
+  userName: string = '';
+  serverName: string = '';
+  serverCreated: boolean = false;
 
   constructor() {
-    this.alertType = AlertType.Success;
-    this.alertMessage = `This is an ${this.title} experimental control!`;
+  }
+
+  onServerCreate(){
+    this.serverCreated = true;
+  }
+
+  onReset() {
+    this.userName = '';
   }
 }
