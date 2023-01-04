@@ -1,0 +1,9 @@
+<div *ngIf="element != null" class="panel panel-default">
+  <div class="panel-heading">{{element.title}} (counter: {{ counter }})</div>
+  <div class="panel-body">
+    <p>
+      <strong *ngIf="element.type === 'server'" style="color: red">{{element.description}}</strong>
+      <em *ngIf="element.type === 'blueprint'"> {{ element.description }}</em>
+    </p>
+  </div>
+</div>

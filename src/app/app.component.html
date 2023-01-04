@@ -16,5 +16,12 @@
       </div>
     </div>
   </div>
+  <hr>
+  <app-server-manager (serverCreated)="onServerAdded($event)" (blueprintCreated)="onBlueprintAdded($event)"></app-server-manager>
+  <div class="row">
+    <div class="col">
+      <app-server-panel *ngFor="let server of servers" [element]="server" [counter]="counter"></app-server-panel>
+    </div>
+  </div>
 </div>
 
