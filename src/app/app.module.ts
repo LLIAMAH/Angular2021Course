@@ -16,6 +16,9 @@ import {RecipeDetailComponent} from "./recipes/recipe-detail/recipe-detail.compo
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { ServerPanelComponent } from './server-panel/server-panel.component';
 import { ServerManagerComponent } from './server-manager/server-manager.component';
+import { GameControlComponent } from './game-control/game-control.component';
+import { OddComponent } from './odd/odd.component';
+import { EvenComponent } from './even/even.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,10 @@ import { ServerManagerComponent } from './server-manager/server-manager.componen
     RecipesComponent,
     ShoppingEditComponent,
     ServerPanelComponent,
-    ServerManagerComponent
+    ServerManagerComponent,
+    GameControlComponent,
+    OddComponent,
+    EvenComponent
   ],
   imports: [
     BrowserModule,

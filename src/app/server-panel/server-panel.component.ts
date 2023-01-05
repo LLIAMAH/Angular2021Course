@@ -10,8 +10,4 @@ export class ServerPanelComponent {
 
   @Input()
   element: Server | null = null;
-
-  @Input()
-  counter: number = 0;
-
 }
