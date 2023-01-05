@@ -14,8 +14,3 @@ export enum ServerStatus {
   Offline,
   Online
 }
-
-export enum EnumFeatureSelected {
-  Recipes,
-  ShoppingList
-}

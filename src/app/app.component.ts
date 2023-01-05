@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {IServer, Server} from "./general-types/objects";
-import {EnumFeatureSelected} from "./general-types/Enums";
 
 @Component({
   selector: 'app-root',
@@ -12,10 +11,7 @@ export class AppComponent {
   counter: number = 0;
   oddNumbers: number[] = [];
   evenNumbers: number[] = [];
-
-  loadedFeature = EnumFeatureSelected.Recipes
-  loadRecipes: boolean = this.loadedFeature == EnumFeatureSelected.Recipes;
-  loadShoppingList: boolean = this.loadedFeature == EnumFeatureSelected.ShoppingList;
+  loadedFeature = '';
 
   constructor() {
   }
@@ -39,16 +35,7 @@ export class AppComponent {
       this.oddNumbers.push(firedNumber);
   }
 
-  onNavigate(featureSelected: EnumFeatureSelected) {
-    console.log('onNavigate: ' + featureSelected)
+  onNavigate(featureSelected: string) {
     this.loadedFeature = featureSelected;
-  }
-
-  checkRecipe(): boolean {
-    return this.loadedFeature === EnumFeatureSelected.Recipes;
-  }
-
-  checkShoppingList(): boolean {
-    return this.loadedFeature === EnumFeatureSelected.ShoppingList;
   }
 }
