@@ -11,7 +11,7 @@ export class AppComponent {
   counter: number = 0;
   oddNumbers: number[] = [];
   evenNumbers: number[] = [];
-  loadedFeature = '';
+  loadedFeature = 'recipes';
 
   constructor() {
   }

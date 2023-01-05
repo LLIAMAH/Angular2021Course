@@ -8,4 +8,8 @@ import {Recipe} from "../general-types/objects";
 })
 export class RecipesComponent {
   selectedRecipe!: Recipe;
+
+  setRecipe(recipe: Recipe) {
+    this.selectedRecipe = recipe;
+  }
 }
