@@ -4,11 +4,12 @@ export interface IServer {
   type: string;
 }
 
-export class Server implements IServer{
-  constructor(public title:string, public description:string, public type: string) {  }
+export interface IIngredient {
+  name:string;
+  amount:number;
 }
 
-export class Ingredient {
+export class Ingredient implements IIngredient {
   constructor(public name: string, public amount: number) {  }
 }
 
