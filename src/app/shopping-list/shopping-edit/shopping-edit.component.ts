@@ -10,7 +10,14 @@ export class ShoppingEditComponent {
   @Output()
   onAddIngredient = new EventEmitter<IIngredient>();
 
-  onAddItem(nameInput: HTMLInputElement, amountInput: HTMLInputElement) {
+  @Output()
+  onClearIngredients = new EventEmitter<void>();
+
+  onAddItem(nameInput: HTMLInputElement, amountInput: HTMLInputElement): void {
     this.onAddIngredient.emit({name: nameInput.value, amount: Number(amountInput.value)});
+  }
+
+  onClearItems(): void {
+    this.onClearIngredients.emit();
   }
 }

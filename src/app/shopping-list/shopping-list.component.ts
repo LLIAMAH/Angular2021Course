@@ -19,4 +19,8 @@ export class ShoppingListComponent {
     else
       this.ingredients.push(ingredient);
   }
+
+  onIngredientsClear() {
+    this.ingredients = [];
+  }
 }
