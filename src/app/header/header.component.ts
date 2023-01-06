@@ -13,5 +13,12 @@ export class HeaderComponent {
 
   onSelect(selectedFeature: string) {
     this.featureSelected.emit(selectedFeature);
+    if (selectedFeature === 'recipes') {
+      this.isActiveRecipe = true;
+      this.isActiveShoppingList = false;
+    } else if (selectedFeature === 'shopping-list') {
+      this.isActiveRecipe = false;
+      this.isActiveShoppingList = true;
+    }
   }
 }

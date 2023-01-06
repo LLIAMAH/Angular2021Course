@@ -9,4 +9,6 @@ import {Recipe} from "../../general-types/objects";
 export class RecipeDetailComponent {
   @Input()
   recipe!: Recipe;
+
+
 }
