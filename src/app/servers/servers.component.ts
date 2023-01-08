@@ -8,12 +8,10 @@ import {AccountsService} from "../services/accounts.service";
   styleUrls: ['./servers.component.css']
 })
 export class ServersComponent {
-  constructor(public accountsService: AccountsService) {  }
+  constructor(private accountsService: AccountsService) {  }
 
   onAddAccount(accountAdded: IAccount) {
-    if(!this.accountsService.AddAccount(accountAdded)){
-      alert(`Account with this name '${accountAdded.name}' already exists.`);
-    }
+    this.accountsService.AddAccount(accountAdded)
   }
 
   onAccountItemStatusChange(accountItem: IAccount) {
