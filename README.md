@@ -2,6 +2,8 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.0.
 
+And required to get practice for the [PacktPub Angular 2021 course](https://www.packtpub.com/product/angular-the-complete-guide-2021-edition-video/9781788998437).
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
