@@ -12,6 +12,9 @@
         <li class="nav-item">
           <a class="nav-link" [ngClass]="isActiveShoppingList ? 'active' : ''" href="#" (click)="onSelect('shopping-list')">Shopping list</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="isActiveServers ? 'active' : ''" href="#" (click)="onSelect('servers')">Servers</a>
+        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Manage

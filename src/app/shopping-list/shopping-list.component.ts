@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {IIngredient, Ingredient} from "../general-types/objects";
+import {IIngredient} from "../general-types/objects";
+import {DataSourceService} from "../services/data-source.service";
 
 @Component({
   selector: 'app-shopping-list',
@@ -7,10 +8,11 @@ import {IIngredient, Ingredient} from "../general-types/objects";
   styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent {
-  ingredients: IIngredient[] = [
-    new Ingredient('Apples', 5),
-    new Ingredient('Tomatoes', 10)
-  ];
+  ingredients: IIngredient[];
+
+  constructor(dataSource: DataSourceService) {
+    this.ingredients = dataSource.ingredients;
+  }
 
   onIngredientAdd(ingredient: IIngredient) {
     let found = this.ingredients.find(o => o.name === ingredient.name);

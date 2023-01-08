@@ -1,0 +1,9 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{account.name}}</h5>
+    <p class="card-text">This account is {{ account.status }}.</p>
+    <button class="btn btn-secondary mx-1" (click)="onSetTo('active')">Set to active</button>
+    <button class="btn btn-secondary mx-1" (click)="onSetTo('inactive')">Set to inactive</button>
+    <button class="btn btn-secondary mx-1" (click)="onSetTo('unknown')">Set to unknown</button>
+  </div>
+</div>

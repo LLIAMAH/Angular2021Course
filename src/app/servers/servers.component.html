@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col">
+    <app-server-edit (onAddAccountEmitter)="onAddAccount($event)"></app-server-edit>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col">
+    <app-servers-list [accountItems]="accountsService.getAccounts()" (onAccountItemStatusChanged)="onAccountItemStatusChange($event)"></app-servers-list>
+  </div>
+</div>

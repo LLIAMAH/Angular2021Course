@@ -10,15 +10,22 @@ export class HeaderComponent {
   featureSelected = new EventEmitter<string>();
   isActiveRecipe: boolean = true;
   isActiveShoppingList: boolean = false;
+  isActiveServers: boolean = false;
 
   onSelect(selectedFeature: string) {
     this.featureSelected.emit(selectedFeature);
     if (selectedFeature === 'recipes') {
       this.isActiveRecipe = true;
       this.isActiveShoppingList = false;
+      this.isActiveServers = false;
     } else if (selectedFeature === 'shopping-list') {
       this.isActiveRecipe = false;
       this.isActiveShoppingList = true;
+      this.isActiveServers = false;
+    } else if (selectedFeature === 'servers') {
+      this.isActiveRecipe = false;
+      this.isActiveShoppingList = false;
+      this.isActiveServers = true;
     }
   }
 }
