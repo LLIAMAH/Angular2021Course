@@ -15,10 +15,6 @@ export class AccountsService {
 
   constructor(private log: LoggingService) { }
 
-  getAccounts(): IAccount[] {
-    return this.accounts;
-  }
-
   findAccount(name: string): IAccount {
     return this.accounts.find(o => o.name === name)!;
   }
@@ -36,7 +32,7 @@ export class AccountsService {
     return false;
   }
 
-  SetNewStatus(accountItem: IAccount) {
+  UpdateStatus(accountItem: IAccount) {
     let found = this.findAccount(accountItem.name);
     if (found) {
       found = accountItem;

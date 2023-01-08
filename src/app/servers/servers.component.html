@@ -6,6 +6,6 @@
 <hr>
 <div class="row">
   <div class="col">
-    <app-servers-list [accountItems]="accountsService.getAccounts()" (onAccountItemStatusChanged)="onAccountItemStatusChange($event)"></app-servers-list>
+    <app-servers-list [accountItems]="accounts" (onAccountItemStatusChanged)="onAccountItemStatusChange($event)"></app-servers-list>
   </div>
 </div>

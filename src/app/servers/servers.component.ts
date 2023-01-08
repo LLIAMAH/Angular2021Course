@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IAccount} from "../general-types/objects";
 import {AccountsService} from "../services/accounts.service";
 
@@ -8,7 +8,10 @@ import {AccountsService} from "../services/accounts.service";
   styleUrls: ['./servers.component.css'],
   providers: [AccountsService]
 })
-export class ServersComponent {
+export class ServersComponent implements OnInit {
+
+  accounts: IAccount[] = [];
+
   constructor(private accountsService: AccountsService) {  }
 
   onAddAccount(accountAdded: IAccount) {
@@ -16,6 +19,10 @@ export class ServersComponent {
   }
 
   onAccountItemStatusChange(accountItem: IAccount) {
-    this.accountsService.SetNewStatus(accountItem);
+    this.accountsService.UpdateStatus(accountItem);
+  }
+
+  ngOnInit(): void {
+    this.accounts = this.accountsService.accounts;
   }
 }
