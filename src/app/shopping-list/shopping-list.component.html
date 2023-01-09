@@ -6,7 +6,7 @@
 <hr>
 <div class="row">
   <div class="col-10">
-    <app-shopping-edit (onAddIngredient)="onIngredientAdd($event)" (onClearIngredients)="onIngredientsClear()"></app-shopping-edit>
+    <app-shopping-edit></app-shopping-edit>
     <hr>
     <ul class="list-group">
       <a class="list-group-item" style="cursor: pointer" *ngFor="let ingredient of ingredients">
@@ -15,8 +15,3 @@
     </ul>
   </div>
 </div>
-
-
-
-
-

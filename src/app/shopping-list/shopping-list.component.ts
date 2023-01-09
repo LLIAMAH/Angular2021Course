@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import {IIngredient} from "../general-types/objects";
-import {RecipeService} from "../services/recipe.service";
+import {Component, OnInit} from '@angular/core';
+import {IIngredient, Ingredient} from "../general-types/objects";
 import {ShoppingListService} from "../services/shopping-list.service";
 
 @Component({
@@ -9,22 +8,30 @@ import {ShoppingListService} from "../services/shopping-list.service";
   styleUrls: ['./shopping-list.component.css'],
   providers: [ShoppingListService]
 })
-export class ShoppingListComponent {
-  ingredients: IIngredient[];
+export class ShoppingListComponent implements OnInit {
+  ingredients: IIngredient[] = [];
 
-  constructor(recipeService: RecipeService) {
-    this.ingredients = recipeService.getIngredients();
-  }
+  constructor(private shoppingListService: ShoppingListService) { }
 
-  onIngredientAdd(ingredient: IIngredient) {
-    let found = this.ingredients.find(o => o.name === ingredient.name);
-    if (found)
-      found.amount += ingredient.amount;
-    else
-      this.ingredients.push(ingredient);
-  }
+  ngOnInit(): void {
+    this.ingredients = this.shoppingListService.getIngredients();
 
-  onIngredientsClear() {
-    this.ingredients = [];
+    this.shoppingListService.onAddIngredient.subscribe(
+      (ingredients: Ingredient[]) => {
+        this.ingredients = ingredients;
+      }
+    );
+
+    this.shoppingListService.onIngredientsCleared.subscribe(
+      () => {
+        this.ingredients = [];
+      }
+    );
+
+    this.shoppingListService.onIngredientAmountChanged.subscribe(
+      (ingredients: Ingredient[]) => {
+        this.ingredients = ingredients;
+      }
+    );
   }
 }
