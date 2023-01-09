@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Recipe} from "../general-types/objects";
 import {LoggingService} from "../services/logging.service";
 import {RecipeService} from "../services/recipe.service";
@@ -6,18 +6,19 @@ import {RecipeService} from "../services/recipe.service";
 @Component({
   selector: 'app-recipes',
   templateUrl: './recipes.component.html',
-  styleUrls: ['./recipes.component.css']
+  styleUrls: ['./recipes.component.css'],
+  providers: [RecipeService]
 })
-export class RecipesComponent {
+export class RecipesComponent implements OnInit {
   selectedRecipe!: Recipe;
 
-  constructor(private recipeService: RecipeService, private log: LoggingService) {
-    this.recipeService.onRecipeItemSelected.subscribe(
+  constructor(private recipeService: RecipeService, private log: LoggingService) { }
+
+  ngOnInit(): void {
+    this.recipeService.onRecipeSelected.subscribe(
       (recipe: Recipe) => {
         this.selectedRecipe = recipe;
         this.log.WriteLog('Subscriptions raised.')
       });
-
-    this.log.WriteLog('Detail subscription initiated.')
   }
 }

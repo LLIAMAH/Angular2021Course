@@ -17,8 +17,6 @@ import { ServersComponent } from './servers/servers.component';
 import { ServerEditComponent } from './servers/server-edit/server-edit.component';
 import { ServersListComponent } from './servers/servers-list/servers-list.component';
 import { ServerItemComponent } from './servers/servers-list/server-item/server-item.component';
-import {RecipeService} from "./services/recipe.service";
-import {ShoppingListService} from "./services/shopping-list.service";
 
 @NgModule({
   declarations: [
@@ -42,8 +40,6 @@ import {ShoppingListService} from "./services/shopping-list.service";
     NgbModule
   ],
   providers: [
-    RecipeService,
-    ShoppingListService,
     LoggingService
   ],
   bootstrap: [AppComponent]

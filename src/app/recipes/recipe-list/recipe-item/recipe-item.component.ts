@@ -1,6 +1,5 @@
 import {Component, Input} from '@angular/core';
 import {Recipe} from "../../../general-types/objects";
-import {LoggingService} from "../../../services/logging.service";
 import {RecipeService} from "../../../services/recipe.service";
 
 @Component({
@@ -12,10 +11,9 @@ export class RecipeItemComponent {
   @Input()
   recipeItem!: Recipe;
 
-  constructor(private recipeService: RecipeService, private log: LoggingService) { }
+  constructor(private recipeService: RecipeService) { }
 
   onSelected(): void {
-    this.recipeService.onRecipeSelect(this.recipeItem);
-    this.log.WriteLog(`onSelected finished: ${this.recipeItem.name}`)
+    this.recipeService.onRecipeSelected.emit(this.recipeItem);
   }
 }
