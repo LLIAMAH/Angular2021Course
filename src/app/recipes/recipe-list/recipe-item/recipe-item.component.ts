@@ -16,6 +16,6 @@ export class RecipeItemComponent {
 
   onSelected(): void {
     this.dataSource.onRecipeSelect(this.recipeItem);
-    this.log.WriteLog(`onSelect fired: ${this.recipeItem}`)
+    this.log.WriteLog(`onSelected finished: ${this.recipeItem.name}`)
   }
 }

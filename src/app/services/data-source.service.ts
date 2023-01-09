@@ -18,11 +18,13 @@ export class DataSourceService {
   ];
 
   onRecipeItemSelected = new EventEmitter<Recipe>();
+  selectedRecipe!: Recipe;
 
   constructor(private log: LoggingService) { }
 
   onRecipeSelect(recipe: Recipe): void{
-    this.onRecipeItemSelected.emit(recipe);
+    this.selectedRecipe = recipe;
+    this.onRecipeItemSelected.emit(this.selectedRecipe);
     this.log.WriteLog(`Recipe selected: ${recipe.name}`);
   }
 }
