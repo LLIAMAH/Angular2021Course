@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {IIngredient} from "../general-types/objects";
-import {DataSourceService} from "../services/data-source.service";
+import {RecipeService} from "../services/recipe.service";
 
 @Component({
   selector: 'app-shopping-list',
@@ -10,8 +10,8 @@ import {DataSourceService} from "../services/data-source.service";
 export class ShoppingListComponent {
   ingredients: IIngredient[];
 
-  constructor(dataSource: DataSourceService) {
-    this.ingredients = dataSource.ingredients;
+  constructor(recipeService: RecipeService) {
+    this.ingredients = recipeService.ingredients;
   }
 
   onIngredientAdd(ingredient: IIngredient) {

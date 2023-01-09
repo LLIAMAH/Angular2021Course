@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {Recipe} from "../general-types/objects";
-import {DataSourceService} from "../services/data-source.service";
 import {LoggingService} from "../services/logging.service";
+import {RecipeService} from "../services/recipe.service";
 
 @Component({
   selector: 'app-recipes',
@@ -11,8 +11,8 @@ import {LoggingService} from "../services/logging.service";
 export class RecipesComponent {
   selectedRecipe!: Recipe;
 
-  constructor(private dataSource: DataSourceService, private log: LoggingService) {
-    this.dataSource.onRecipeItemSelected.subscribe(
+  constructor(private recipeService: RecipeService, private log: LoggingService) {
+    this.recipeService.onRecipeItemSelected.subscribe(
       (recipe: Recipe) => {
         this.selectedRecipe = recipe;
         this.log.WriteLog('Subscriptions raised.')

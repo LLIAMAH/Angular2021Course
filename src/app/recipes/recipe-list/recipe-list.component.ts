@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Recipe} from "../../general-types/objects";
-import {DataSourceService} from "../../services/data-source.service";
+import {RecipeService} from "../../services/recipe.service";
 
 @Component({
   selector: 'app-recipe-list',
@@ -11,7 +11,7 @@ export class RecipeListComponent {
 
   recipes: Recipe[];
 
-  constructor(private dataSource: DataSourceService) {
-    this.recipes = dataSource.recipes;
+  constructor(private recipeService: RecipeService) {
+    this.recipes = this.recipeService.recipes;
   }
 }

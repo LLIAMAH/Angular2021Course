@@ -12,12 +12,13 @@ import {RecipeListComponent} from "./recipes/recipe-list/recipe-list.component";
 import {RecipeItemComponent} from "./recipes/recipe-list/recipe-item/recipe-item.component";
 import {RecipeDetailComponent} from "./recipes/recipe-detail/recipe-detail.component";
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
-import {DataSourceService} from "./services/data-source.service";
 import {LoggingService} from "./services/logging.service";
 import { ServersComponent } from './servers/servers.component';
 import { ServerEditComponent } from './servers/server-edit/server-edit.component';
 import { ServersListComponent } from './servers/servers-list/servers-list.component';
 import { ServerItemComponent } from './servers/servers-list/server-item/server-item.component';
+import {RecipeService} from "./services/recipe.service";
+import {ShoppingListService} from "./services/shopping-list.service";
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ServerItemComponent } from './servers/servers-list/server-item/server-i
     NgbModule
   ],
   providers: [
-    DataSourceService,
+    RecipeService,
+    ShoppingListService,
     LoggingService
   ],
   bootstrap: [AppComponent]

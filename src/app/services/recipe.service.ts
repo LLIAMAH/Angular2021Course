@@ -5,7 +5,7 @@ import {LoggingService} from "./logging.service";
 @Injectable({
   providedIn: 'root'
 })
-export class DataSourceService {
+export class RecipeService {
   ingredients: IIngredient[] = [
     new Ingredient('Apples', 5),
     new Ingredient('Tomatoes', 10)
