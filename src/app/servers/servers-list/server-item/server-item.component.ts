@@ -1,5 +1,6 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {IAccount} from "../../../general-types/objects";
+import {AccountsService} from "../../../services/accounts.service";
 
 @Component({
   selector: 'app-server-item',
@@ -9,12 +10,14 @@ import {IAccount} from "../../../general-types/objects";
 export class ServerItemComponent {
   @Input()
   account!: IAccount;
+  @Input()
+  id: number = 0;
 
-  @Output()
-  onSetToClicked: EventEmitter<IAccount> = new EventEmitter<IAccount>();
+  constructor(private accountsService: AccountsService) {  }
 
   onSetTo(status: string) {
-    this.account.status = status
-    this.onSetToClicked.emit(this.account);
+    this.account.status = status;
+    this.accountsService.UpdateStatus(this.account)
+    this.accountsService.statusUpdated.emit(this.account);
   }
 }

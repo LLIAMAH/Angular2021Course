@@ -14,14 +14,6 @@ export class ServersComponent implements OnInit {
 
   constructor(private accountsService: AccountsService) {  }
 
-  onAddAccount(accountAdded: IAccount) {
-    this.accountsService.AddAccount(accountAdded)
-  }
-
-  onAccountItemStatusChange(accountItem: IAccount) {
-    this.accountsService.UpdateStatus(accountItem);
-  }
-
   ngOnInit(): void {
     this.accounts = this.accountsService.accounts;
   }

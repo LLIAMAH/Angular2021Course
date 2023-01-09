@@ -1,5 +1,6 @@
-import {Component, EventEmitter, Output} from '@angular/core';
-import {Account, IAccount} from "../../general-types/objects";
+import {Component} from '@angular/core';
+import {IAccount} from "../../general-types/objects";
+import {AccountsService} from "../../services/accounts.service";
 
 @Component({
   selector: 'app-server-edit',
@@ -7,13 +8,16 @@ import {Account, IAccount} from "../../general-types/objects";
   styleUrls: ['./server-edit.component.css']
 })
 export class ServerEditComponent {
-
-  @Output()
-  onAddAccountEmitter: EventEmitter<IAccount> = new EventEmitter<IAccount>()
+  constructor(private accountsService: AccountsService) {
+    this.accountsService.statusUpdated.subscribe(
+      (accountChanged: IAccount) => {
+        alert(`New status of the item (${accountChanged.name}): ${accountChanged.status}`);
+      });
+  }
 
   onAddAccount(inputAccountName: HTMLInputElement, inputAccountStatus: HTMLSelectElement) {
     const name = inputAccountName.value;
     const status = inputAccountStatus.value;
-    this.onAddAccountEmitter.emit(new Account(name, status));
+    this.accountsService.AddAccount(name, status);
   }
 }

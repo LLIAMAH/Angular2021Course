@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {Account, IAccount} from "../general-types/objects";
 import {LoggingService} from "./logging.service";
 
@@ -13,17 +13,19 @@ export class AccountsService {
     new Account('Hidden account', 'unknown')
   ];
 
+  statusUpdated: EventEmitter<IAccount> = new EventEmitter<IAccount>();
+
   constructor(private log: LoggingService) { }
 
   findAccount(name: string): IAccount {
     return this.accounts.find(o => o.name === name)!;
   }
 
-  AddAccount(accountAdded: IAccount): boolean {
-    const found = this.findAccount(accountAdded.name);
+  AddAccount(name: string, status: string): boolean {
+    const found = this.findAccount(name);
     if (!found) {
-      this.accounts.push(accountAdded);
-      this.log.WriteLog(`Account added: (name: ${accountAdded.name}; status: ${accountAdded.status})`);
+      this.accounts.push(new Account(name, status));
+      this.log.WriteLog(`Account added: (name: ${name}; status: ${status})`);
       return true;
     }
 
@@ -32,10 +34,10 @@ export class AccountsService {
     return false;
   }
 
-  UpdateStatus(accountItem: IAccount) {
-    let found = this.findAccount(accountItem.name);
+  UpdateStatus(account: IAccount) {
+    let found = this.findAccount(account.name);
     if (found) {
-      found = accountItem;
+      found = account;
       this.log.WriteLog(`Account (${found.name}) received new status: ${found.status}.`);
     }
   }

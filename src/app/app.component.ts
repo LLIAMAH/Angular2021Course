@@ -4,13 +4,12 @@ import {LoggingService} from "./services/logging.service";
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   loadedFeature = 'recipes';
 
-  constructor(private log: LoggingService) {
-  }
+  constructor(private log: LoggingService) { }
 
   onNavigate(featureSelected: string) {
     this.loadedFeature = featureSelected;

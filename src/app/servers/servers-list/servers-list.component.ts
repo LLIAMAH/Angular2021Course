@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {IAccount} from "../../general-types/objects";
 
 @Component({
@@ -9,11 +9,4 @@ import {IAccount} from "../../general-types/objects";
 export class ServersListComponent {
   @Input()
   accountItems!: IAccount[];
-
-  @Output()
-  onAccountItemStatusChanged: EventEmitter<IAccount> = new EventEmitter<IAccount>();
-
-  onItemSetTo(item: IAccount) {
-    this.onAccountItemStatusChanged.emit(item);
-  }
 }

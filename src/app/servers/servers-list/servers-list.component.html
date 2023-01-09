@@ -1,3 +1,3 @@
 <ul class="list-group">
-  <app-server-item *ngFor="let item of accountItems" [account]="item" (onSetToClicked)="onItemSetTo($event)"></app-server-item>
+  <app-server-item *ngFor="let item of accountItems; let i = index" [id]="i" [account]="item"></app-server-item>
 </ul>
