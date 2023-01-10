@@ -6,8 +6,7 @@ import {LoggingService} from "../services/logging.service";
 @Component({
   selector: 'app-shopping-list',
   templateUrl: './shopping-list.component.html',
-  styleUrls: ['./shopping-list.component.css'],
-  providers: [ShoppingListService]
+  styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent implements OnInit {
   ingredients: IIngredient[] = [];
@@ -37,13 +36,10 @@ export class ShoppingListComponent implements OnInit {
     );
 
     this.shoppingListService.onUpdateIngredients.subscribe(
-      () => {
-        this.log.WriteLog('onUpdateIngredients triggered.');
-      }
-      /* (ingredients: IIngredient[]) => {
+        (ingredients: IIngredient[]) => {
         this.ingredients = ingredients;
         this.log.WriteLog('onUpdateIngredients triggered.');
-      }*/
+      }
     );
   }
 }

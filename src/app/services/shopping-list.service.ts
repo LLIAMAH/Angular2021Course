@@ -14,8 +14,8 @@ export class ShoppingListService {
   onAddIngredient: EventEmitter<Ingredient[]> = new EventEmitter<Ingredient[]>();
   onIngredientAmountChanged: EventEmitter<Ingredient[]> = new EventEmitter<Ingredient[]>();
   onIngredientsCleared: EventEmitter<void> = new EventEmitter<void>();
-  //onUpdateIngredients: EventEmitter<IIngredient[]> = new EventEmitter<IIngredient[]>();
-  onUpdateIngredients: EventEmitter<void> = new EventEmitter<void>();
+  onUpdateIngredients: EventEmitter<IIngredient[]> = new EventEmitter<IIngredient[]>();
+  //onUpdateIngredients: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(private log: LoggingService) { }
 
@@ -30,9 +30,9 @@ export class ShoppingListService {
       found.amount += amount;
       this.onIngredientAmountChanged.emit(this.ingredients);
     } else {
-      const ingredient = new Ingredient(name, amount)
+      const ingredient = new Ingredient(name, amount);
       this.ingredients.push(ingredient);
-      this.onAddIngredient.emit(this.ingredients)
+      this.onAddIngredient.emit(this.ingredients);
     }
   }
 
@@ -42,10 +42,12 @@ export class ShoppingListService {
   }
 
   MoveRecipeToShoppingList(ingredients: Ingredient[]) {
-    this.log.WriteLog('MoveRecipeToShoppingList initiated')
+    this.log.WriteLog('MoveRecipeToShoppingList initiated');
     this.ingredients = ingredients;
-    //this.onUpdateIngredients.emit(this.ingredients);
-    this.onUpdateIngredients.emit();
-    this.log.WriteLog('MoveRecipeToShoppingList finished')
+    this.log.WriteLog('onUpdateIngredients before emit.');
+    this.onUpdateIngredients.emit(this.ingredients);
+    //this.onUpdateIngredients.emit();
+    this.log.WriteLog('onUpdateIngredients after emit.');
+    this.log.WriteLog('MoveRecipeToShoppingList finished');
   }
 }
