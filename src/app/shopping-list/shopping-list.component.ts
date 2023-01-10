@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {IIngredient, Ingredient} from "../general-types/objects";
+import {IIngredient, Ingredient} from "../general-types/Ingredient";
 import {ShoppingListService} from "../services/shopping-list.service";
+import {LoggingService} from "../services/logging.service";
 
 @Component({
   selector: 'app-shopping-list',
@@ -11,7 +12,8 @@ import {ShoppingListService} from "../services/shopping-list.service";
 export class ShoppingListComponent implements OnInit {
   ingredients: IIngredient[] = [];
 
-  constructor(private shoppingListService: ShoppingListService) { }
+  constructor(private shoppingListService: ShoppingListService, private log: LoggingService) {
+  }
 
   ngOnInit(): void {
     this.ingredients = this.shoppingListService.getIngredients();
@@ -32,6 +34,16 @@ export class ShoppingListComponent implements OnInit {
       (ingredients: Ingredient[]) => {
         this.ingredients = ingredients;
       }
+    );
+
+    this.shoppingListService.onUpdateIngredients.subscribe(
+      () => {
+        this.log.WriteLog('onUpdateIngredients triggered.');
+      }
+      /* (ingredients: IIngredient[]) => {
+        this.ingredients = ingredients;
+        this.log.WriteLog('onUpdateIngredients triggered.');
+      }*/
     );
   }
 }

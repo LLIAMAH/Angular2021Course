@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {LoggingService} from "./services/logging.service";
 
 @Component({
   selector: 'app-root',
@@ -9,10 +8,9 @@ import {LoggingService} from "./services/logging.service";
 export class AppComponent {
   loadedFeature = 'recipes';
 
-  constructor(private log: LoggingService) { }
+  constructor() { }
 
   onNavigate(featureSelected: string) {
     this.loadedFeature = featureSelected;
-    this.log.WriteLog('Test message')
   }
 }

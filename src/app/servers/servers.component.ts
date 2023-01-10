@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {IAccount} from "../general-types/objects";
+import {IAccount} from "../general-types/Account";
 import {AccountsService} from "../services/accounts.service";
 
 @Component({

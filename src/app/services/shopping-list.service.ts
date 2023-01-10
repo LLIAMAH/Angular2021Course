@@ -1,5 +1,6 @@
 import {EventEmitter, Injectable} from '@angular/core';
-import {IIngredient, Ingredient} from "../general-types/objects";
+import {IIngredient, Ingredient} from "../general-types/Ingredient";
+import {LoggingService} from "./logging.service";
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,10 @@ export class ShoppingListService {
   onAddIngredient: EventEmitter<Ingredient[]> = new EventEmitter<Ingredient[]>();
   onIngredientAmountChanged: EventEmitter<Ingredient[]> = new EventEmitter<Ingredient[]>();
   onIngredientsCleared: EventEmitter<void> = new EventEmitter<void>();
+  //onUpdateIngredients: EventEmitter<IIngredient[]> = new EventEmitter<IIngredient[]>();
+  onUpdateIngredients: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor() { }
+  constructor(private log: LoggingService) { }
 
   getIngredients(): IIngredient[] {
     return this.ingredients;
@@ -36,5 +39,13 @@ export class ShoppingListService {
   ClearIngredients(): void {
     this.ingredients = [];
     this.onIngredientsCleared.emit();
+  }
+
+  MoveRecipeToShoppingList(ingredients: Ingredient[]) {
+    this.log.WriteLog('MoveRecipeToShoppingList initiated')
+    this.ingredients = ingredients;
+    //this.onUpdateIngredients.emit(this.ingredients);
+    this.onUpdateIngredients.emit();
+    this.log.WriteLog('MoveRecipeToShoppingList finished')
   }
 }

@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Recipe} from "../../../general-types/objects";
+import {Recipe} from "../../../general-types/Recipe";
 import {RecipeService} from "../../../services/recipe.service";
 
 @Component({

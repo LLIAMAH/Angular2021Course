@@ -1,5 +1,5 @@
 import {EventEmitter, Injectable} from '@angular/core';
-import {Account, IAccount} from "../general-types/objects";
+import {Account, IAccount} from "../general-types/Account";
 import {LoggingService} from "./logging.service";
 
 @Injectable({
