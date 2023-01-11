@@ -20,18 +20,21 @@ export class ShoppingListComponent implements OnInit {
     this.shoppingListService.onAddIngredient.subscribe(
       (ingredients: Ingredient[]) => {
         this.ingredients = ingredients;
+        this.log.WriteLog('onAddIngredient triggered.');
       }
     );
 
     this.shoppingListService.onIngredientsCleared.subscribe(
       () => {
         this.ingredients = [];
+        this.log.WriteLog('onIngredientsCleared triggered.');
       }
     );
 
     this.shoppingListService.onIngredientAmountChanged.subscribe(
       (ingredients: Ingredient[]) => {
         this.ingredients = ingredients;
+        this.log.WriteLog('onIngredientAmountChanged triggered.');
       }
     );
 

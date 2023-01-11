@@ -17,6 +17,7 @@ import { ServersComponent } from './servers/servers.component';
 import { ServerEditComponent } from './servers/server-edit/server-edit.component';
 import { ServersListComponent } from './servers/servers-list/servers-list.component';
 import { ServerItemComponent } from './servers/servers-list/server-item/server-item.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ServerItemComponent } from './servers/servers-list/server-item/server-i
     ServersComponent,
     ServerEditComponent,
     ServersListComponent,
-    ServerItemComponent
+    ServerItemComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

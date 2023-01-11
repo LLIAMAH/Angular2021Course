@@ -12,4 +12,8 @@ export class Recipe {
     this.imagePath = imagePath;
     this.ingredients = ingredients;
   }
+
+  equals(recipe: Recipe): boolean {
+    return this.name === recipe.name;
+  }
 }

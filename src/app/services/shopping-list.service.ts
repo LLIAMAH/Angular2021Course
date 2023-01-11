@@ -24,6 +24,11 @@ export class ShoppingListService {
   }
 
   AddIngredient(name: string, amount: number): void {
+    if(name === undefined || amount === 0){
+      this.log.WriteLog('name or amount parameters is null -> AddIngredient aborting.');
+      return;
+    }
+
     let found = this.ingredients.find(o => o.name === name);
 
     if (found) {
@@ -42,12 +47,7 @@ export class ShoppingListService {
   }
 
   MoveRecipeToShoppingList(ingredients: Ingredient[]) {
-    this.log.WriteLog('MoveRecipeToShoppingList initiated');
     this.ingredients = ingredients;
-    this.log.WriteLog('onUpdateIngredients before emit.');
     this.onUpdateIngredients.emit(this.ingredients);
-    //this.onUpdateIngredients.emit();
-    this.log.WriteLog('onUpdateIngredients after emit.');
-    this.log.WriteLog('MoveRecipeToShoppingList finished');
   }
 }
