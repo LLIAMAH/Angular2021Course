@@ -4,6 +4,5 @@ export interface IAccount {
 }
 
 export class Account implements IAccount {
-  constructor(public name: string, public status: string) {
-  }
+  constructor(public name: string, public status: string) { }
 }
