@@ -13,7 +13,8 @@ export class RecipeDetailComponent {
 
   constructor(private shoppingList: ShoppingListService) { }
 
-  onMoveToShoppingList(): void {
+  onMoveToShoppingList(event: Event): void {
+    event.preventDefault();
     this.shoppingList.MoveRecipeToShoppingList(this.recipe.ingredients);
   }
 }

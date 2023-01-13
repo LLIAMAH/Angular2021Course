@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-6">
+    <div class="list-group">
+      <a class="list-group-item list-group-item-action" aria-current="true"
+         routerLink="/users/{{userData.id}}"
+         *ngFor="let userData of users; let i = index">
+         <!--(click)="onUserSelect($event, i, userData.id)"-->
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">{{userData.login}}</h5>
+          <small>{{userData.firstName}} {{userData.lastName}}</small>
+        </div>
+        <p class="mb-1">Some placeholder content in a paragraph.</p>
+        <small>Birthdate: {{userData.birthDate}}</small>
+      </a>
+    </div>
+  </div>
+  <div class="col-6">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+

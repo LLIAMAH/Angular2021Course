@@ -1,3 +1,31 @@
-<p>
-  Just default component to se initial page here.
-</p>
+<div class="row">
+  <div class="col">
+    <p>
+      Just default component to se initial page here.
+    </p>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <div class="alert alert-success" role="alert" *ngIf="isLoggedOn; else alertLoggedOff">
+      User is logged in
+    </div>
+    <ng-template #alertLoggedOff>
+      <div class="alert alert-danger" role="alert">
+        User is logged off
+      </div>
+    </ng-template>
+    <button class="btn btn-success mx-1" (click)="onLogin()">Login</button>
+    <button class="btn btn-danger mx-1" (click)="onLogOut()">Logoff</button>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col">
+    <ul>
+      <li><button class="btn btn-primary" (click)="onClick('recipes')">Recipes</button></li>
+      <li><button class="btn btn-primary" (click)="onClick('shopping-list')">Shopping list</button></li>
+      <li><button class="btn btn-primary" (click)="onClick('servers')">Servers</button></li>
+    </ul>
+  </div>
+</div>

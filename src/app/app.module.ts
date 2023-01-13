@@ -18,6 +18,9 @@ import { ServerEditComponent } from './servers/server-edit/server-edit.component
 import { ServersListComponent } from './servers/servers-list/servers-list.component';
 import { ServerItemComponent } from './servers/servers-list/server-item/server-item.component';
 import { HomeComponent } from './home/home.component';
+import { UsersComponent } from './users/users.component';
+import { UserDetailComponent } from './users/user-detail/user-detail.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,10 @@ import { HomeComponent } from './home/home.component';
     ServerEditComponent,
     ServersListComponent,
     ServerItemComponent,
-    HomeComponent
+    HomeComponent,
+    UsersComponent,
+    UserDetailComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
