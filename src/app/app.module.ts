@@ -23,6 +23,9 @@ import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RecipeItemDefaultComponent } from './recipes/recipe-item-default/recipe-item-default.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
+import { ExperimentsObservablesComponent } from './experiments-observables/experiments-observables.component';
+import { ExperimentsObservablesDefaultComponent } from './experiments-observables/experiments-observables-default/experiments-observables-default.component';
+import { ExperimentsObservablesUserComponent } from './experiments-observables/experiments-observables-user/experiments-observables-user.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,10 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
     UserDetailComponent,
     PageNotFoundComponent,
     RecipeItemDefaultComponent,
-    RecipeEditComponent
+    RecipeEditComponent,
+    ExperimentsObservablesComponent,
+    ExperimentsObservablesDefaultComponent,
+    ExperimentsObservablesUserComponent
   ],
   imports: [
     BrowserModule,

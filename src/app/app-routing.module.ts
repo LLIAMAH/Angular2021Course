@@ -12,6 +12,13 @@ import {HomeComponent} from "./home/home.component";
 import {RecipeDetailComponent} from "./recipes/recipe-detail/recipe-detail.component";
 import {RecipeItemDefaultComponent} from "./recipes/recipe-item-default/recipe-item-default.component";
 import {RecipeEditComponent} from "./recipes/recipe-edit/recipe-edit.component";
+import {ExperimentsObservablesComponent} from "./experiments-observables/experiments-observables.component";
+import {
+  ExperimentsObservablesDefaultComponent
+} from "./experiments-observables/experiments-observables-default/experiments-observables-default.component";
+import {
+  ExperimentsObservablesUserComponent
+} from "./experiments-observables/experiments-observables-user/experiments-observables-user.component";
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -30,6 +37,10 @@ const appRoutes: Routes = [
     canActivateChild: [ AuthGuardService ],
       children: [
       { path: ':id', component: UserDetailComponent, resolve: {user: UserResolverService} }
+    ] },
+  { path: 'observables-experiments', component: ExperimentsObservablesComponent, children: [
+      {path: '', component: ExperimentsObservablesDefaultComponent },
+      {path: ':id', component: ExperimentsObservablesUserComponent }
     ] },
   { path: 'not-found', component: PageNotFoundComponent },
   { path: '**', redirectTo: '/not-found' }
