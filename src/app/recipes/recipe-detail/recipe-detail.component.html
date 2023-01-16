@@ -1,9 +1,9 @@
-<div class="card mb-3" *ngIf="recipe; else infoText">
-  <img style="max-height: 300px; max-width: 300px;" [src]="recipe.imagePath" class="card-img-top" alt="Image for {{recipe.name}}">
+<div class="card mb-3"> <!-- *ngIf="recipe != undefined; else infoText">-->
+  <img style="max-height: 300px; max-width: 300px;" [src]="recipe!.imagePath" class="card-img-top" alt="Image for {{recipe!.name}}">
   <div class="card-body">
     <div class="row">
       <div class="col">
-        <h5 class="card-title float-start">{{recipe.name}}</h5>
+        <h5 class="card-title float-start">{{recipe!.name}}</h5>
         <div class="dropdown float-end">
         <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           Manage
@@ -18,7 +18,7 @@
     </div>
     <div class="row">
       <div class="col">
-        <p class="card-text">{{recipe.description}}</p>
+        <p class="card-text">{{recipe!.description}}</p>
       </div>
     </div>
   </div>
@@ -26,13 +26,13 @@
     <div class="col">
       <div class="card-header">Ingredients</div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item" *ngFor="let ingredient of recipe.ingredients">{{ ingredient.name}} ({{ingredient.amount}})</li>
+        <li class="list-group-item" *ngFor="let ingredient of recipe!.ingredients">{{ ingredient.name}} ({{ingredient.amount}})</li>
       </ul>
     </div>
   </div>
 </div>
 
 <!--<app-recipe-detail *ngIf="selectedRecipe; else infoText" [recipe]="selectedRecipe"></app-recipe-detail>-->
-<ng-template #infoText>
+<!--<ng-template #infoText>
   <p>Please select a Recipe!</p>
-</ng-template>
+</ng-template>-->
