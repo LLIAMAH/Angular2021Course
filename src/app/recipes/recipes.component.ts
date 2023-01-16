@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Recipe} from "../general-types/Recipe";
-import {LoggingService} from "../services/logging.service";
 import {RecipeService} from "../services/recipe.service";
 import {ShoppingListService} from "../services/shopping-list.service";
 
@@ -13,8 +12,7 @@ export class RecipesComponent implements OnInit {
   selectedRecipe!: Recipe;
 
   constructor(private recipeService: RecipeService,
-              private shoppingListService: ShoppingListService,
-              private log: LoggingService) { }
+              private shoppingListService: ShoppingListService) { }
 
   ngOnInit(): void {
     this.recipeService.onRecipeSelected.subscribe(
@@ -24,7 +22,6 @@ export class RecipesComponent implements OnInit {
           this.selectedRecipe = recipe;
           this.shoppingListService.onIngredientsCleared.emit()
         }
-        this.log.WriteLog('onRecipeSelected triggered.');
       });
   }
 }
