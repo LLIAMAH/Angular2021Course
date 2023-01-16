@@ -8,11 +8,16 @@ import {UserDetailComponent} from "./users/user-detail/user-detail.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {AuthGuardService} from "./services/auth-guard.service";
 import {UserResolverService} from "./services/user-resolver.service";
+import {HomeComponent} from "./home/home.component";
+import {RecipeDetailComponent} from "./recipes/recipe-detail/recipe-detail.component";
 
 const appRoutes: Routes = [
-  //{ path: '', component: HomeComponent },
-  { path: '', redirectTo: '/recipes', pathMatch: 'full' },
-  { path: 'recipes', component: RecipesComponent },
+  { path: '', component: HomeComponent },
+  //{ path: '', redirectTo: '/recipes', pathMatch: 'full' },
+  //{ path: 'recipes', component: RecipesComponent },
+  { path: 'recipes', component: RecipesComponent, children: [
+      {path: ':id', component: RecipeDetailComponent }
+    ] },
   { path: 'shopping-list', component: ShoppingListComponent },
   { path: 'servers', component: ServersComponent },
   { path: 'users',
