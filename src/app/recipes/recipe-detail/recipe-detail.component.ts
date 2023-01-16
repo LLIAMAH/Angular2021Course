@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Recipe} from "../../general-types/Recipe";
 import {ShoppingListService} from "../../services/shopping-list.service";
 import {ActivatedRoute, Data} from "@angular/router";
@@ -10,7 +10,6 @@ import {RecipeService} from "../../services/recipe.service";
   styleUrls: ['./recipe-detail.component.css']
 })
 export class RecipeDetailComponent implements OnInit {
-  @Input()
   recipe!: Recipe;
 
   constructor(private shoppingList: ShoppingListService, private route: ActivatedRoute,
