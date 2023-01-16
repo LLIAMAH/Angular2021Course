@@ -12,7 +12,8 @@ import {RecipeService} from "../../services/recipe.service";
 export class RecipeDetailComponent implements OnInit {
   recipe!: Recipe;
 
-  constructor(private shoppingList: ShoppingListService, private route: ActivatedRoute,
+  constructor(private shoppingList: ShoppingListService,
+              private route: ActivatedRoute,
               private recipeService: RecipeService) { }
 
   onMoveToShoppingList(event: Event): void {

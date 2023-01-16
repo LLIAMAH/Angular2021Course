@@ -1,0 +1,8 @@
+<p *ngIf="edit; else newTemplate">
+  It is edit
+</p>
+<ng-template #newTemplate>
+  <p>
+    It is new
+  </p>
+</ng-template>

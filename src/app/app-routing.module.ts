@@ -11,6 +11,7 @@ import {UserResolverService} from "./services/user-resolver.service";
 import {HomeComponent} from "./home/home.component";
 import {RecipeDetailComponent} from "./recipes/recipe-detail/recipe-detail.component";
 import {RecipeItemDefaultComponent} from "./recipes/recipe-item-default/recipe-item-default.component";
+import {RecipeEditComponent} from "./recipes/recipe-edit/recipe-edit.component";
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,7 +19,9 @@ const appRoutes: Routes = [
   //{ path: 'recipes', component: RecipesComponent },
   { path: 'recipes', component: RecipesComponent, children: [
       { path: '', component: RecipeItemDefaultComponent },
-      { path: ':id', component: RecipeDetailComponent }
+      { path: 'new', component: RecipeEditComponent },
+      { path: ':id', component: RecipeDetailComponent },
+      { path: ':id/edit', component: RecipeEditComponent }
     ] },
   { path: 'shopping-list', component: ShoppingListComponent },
   { path: 'servers', component: ServersComponent },

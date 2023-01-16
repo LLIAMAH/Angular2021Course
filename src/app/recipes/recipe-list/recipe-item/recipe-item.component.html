@@ -1,15 +1,15 @@
 <a class="list-group-item clearfix" routerLink="/recipes/{{recipeItem!.id}}">
-<div class="card mb-3" style="max-width: 540px;">
-  <div class="row g-0">
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">{{recipeItem!.name}}</h5>
-        <p class="card-text">{{recipeItem!.description}}</p>
+  <div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{recipeItem!.name}}</h5>
+          <p class="card-text">{{recipeItem!.description}}</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <img [src]="recipeItem!.imagePath" class="img-fluid rounded-end" alt="Image for '{{recipeItem.name}}'" style="padding: 10px;">
       </div>
     </div>
-    <div class="col-md-4">
-      <img [src]="recipeItem!.imagePath" class="img-fluid rounded-end" alt="Image for '{{recipeItem.name}}'" style="padding: 10px;">
-    </div>
   </div>
-</div>
 </a>

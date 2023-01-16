@@ -22,6 +22,7 @@ import { UsersComponent } from './users/users.component';
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RecipeItemDefaultComponent } from './recipes/recipe-item-default/recipe-item-default.component';
+import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { RecipeItemDefaultComponent } from './recipes/recipe-item-default/recipe
     UsersComponent,
     UserDetailComponent,
     PageNotFoundComponent,
-    RecipeItemDefaultComponent
+    RecipeItemDefaultComponent,
+    RecipeEditComponent
   ],
   imports: [
     BrowserModule,
