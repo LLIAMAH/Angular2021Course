@@ -19,6 +19,9 @@ import {
 import {
   ExperimentsObservablesUserComponent
 } from "./experiments-observables/experiments-observables-user/experiments-observables-user.component";
+import {FormsProcessingComponent} from "./forms-processing/forms-processing.component";
+import {FormTdComponent} from "./forms-processing/form-td/form-td.component";
+import {FormReactiveComponent} from "./forms-processing/form-reactive/form-reactive.component";
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -41,6 +44,10 @@ const appRoutes: Routes = [
   { path: 'observables-experiments', component: ExperimentsObservablesComponent, children: [
       {path: '', component: ExperimentsObservablesDefaultComponent },
       {path: ':id', component: ExperimentsObservablesUserComponent }
+    ] },
+  { path: 'form-processing', component: FormsProcessingComponent, children: [
+      { path: 'form-td', component: FormTdComponent },
+      { path: 'form-reactive', component: FormReactiveComponent }
     ] },
   { path: 'not-found', component: PageNotFoundComponent },
   { path: '**', redirectTo: '/not-found' }
