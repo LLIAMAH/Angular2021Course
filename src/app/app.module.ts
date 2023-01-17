@@ -26,6 +26,9 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
 import { ExperimentsObservablesComponent } from './experiments-observables/experiments-observables.component';
 import { ExperimentsObservablesDefaultComponent } from './experiments-observables/experiments-observables-default/experiments-observables-default.component';
 import { ExperimentsObservablesUserComponent } from './experiments-observables/experiments-observables-user/experiments-observables-user.component';
+import { FormsProcessingComponent } from './forms-processing/forms-processing.component';
+import { FormTdComponent } from './forms-processing/form-td/form-td.component';
+import { FormReactiveComponent } from './forms-processing/form-reactive/form-reactive.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +52,10 @@ import { ExperimentsObservablesUserComponent } from './experiments-observables/e
     RecipeEditComponent,
     ExperimentsObservablesComponent,
     ExperimentsObservablesDefaultComponent,
-    ExperimentsObservablesUserComponent
+    ExperimentsObservablesUserComponent,
+    FormsProcessingComponent,
+    FormTdComponent,
+    FormReactiveComponent
   ],
   imports: [
     BrowserModule,
