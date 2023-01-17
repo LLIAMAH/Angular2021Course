@@ -14,11 +14,5 @@ import {UsersService} from "./services/users.service";
   ]
 })
 export class AppComponent {
-  loadedFeature = 'recipes';
-
   constructor() { }
-
-  onNavigate(featureSelected: string) {
-    this.loadedFeature = featureSelected;
-  }
 }

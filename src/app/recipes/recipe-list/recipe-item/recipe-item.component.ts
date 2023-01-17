@@ -16,7 +16,7 @@ export class RecipeItemComponent {
 
   onSelected(e: Event): void {
     e.preventDefault();
-    this.recipeService.onRecipeSelected.emit(this.recipeItem);
+    this.recipeService.onRecipeSelected.next(this.recipeItem);
     this.log.WriteLog('onSelected finished');
   }
 }

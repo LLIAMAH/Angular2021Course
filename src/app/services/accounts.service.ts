@@ -1,6 +1,7 @@
-import {EventEmitter, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Account, IAccount} from "../general-types/Account";
 import {LoggingService} from "./logging.service";
+import {Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class AccountsService {
     new Account('Hidden account', 'unknown')
   ];
 
-  statusUpdated: EventEmitter<IAccount> = new EventEmitter<IAccount>();
+  statusUpdated: Subject<IAccount> = new Subject<IAccount>();
 
   constructor(private log: LoggingService) { }
 

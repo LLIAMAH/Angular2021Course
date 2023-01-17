@@ -1,6 +1,7 @@
-import {EventEmitter, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Recipe} from "../general-types/Recipe";
 import {Ingredient} from "../general-types/Ingredient";
+import {Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -37,20 +38,19 @@ export class RecipeService {
       ])
   ];
 
-  onRecipeSelected = new EventEmitter<Recipe>();
-  selectedRecipe!: Recipe;
+  onRecipeSelected = new Subject<Recipe>();
 
-  constructor() { }
+  constructor() {
+  }
 
-  getRecipes() : Recipe[] {
+  getRecipes(): Recipe[] {
     return this.recipes.slice();
   }
 
   getRecipe(id: number): Recipe {
     return this.getRecipes().find(
-      (r)=> {
+      (r) => {
         return r.id === id;
-      }
-    )!;
+      })!
   }
 }

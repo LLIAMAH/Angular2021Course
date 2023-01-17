@@ -18,6 +18,6 @@ export class ServerItemComponent {
   onSetTo(status: string) {
     this.account.status = status;
     this.accountsService.UpdateStatus(this.account)
-    this.accountsService.statusUpdated.emit(this.account);
+    this.accountsService.statusUpdated.next(this.account);
   }
 }

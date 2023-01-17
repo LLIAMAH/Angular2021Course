@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Observable, Subscription} from "rxjs";
+import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
+import {ISubscriptionsStorage, SubscriptionsStorage} from "../general-types/SubscriptionStorage";
 
 @Component({
   selector: 'app-experiments-observables',
@@ -8,8 +9,7 @@ import {map} from "rxjs/operators";
   styleUrls: ['./experiments-observables.component.css']
 })
 export class ExperimentsObservablesComponent implements OnInit, OnDestroy {
-
-  private subscribed!: Subscription;
+  private subscriptions: ISubscriptionsStorage = new SubscriptionsStorage();
 
   constructor() {
   }
@@ -23,28 +23,24 @@ export class ExperimentsObservablesComponent implements OnInit, OnDestroy {
       }, 1000);
     });
 
-    this.subscribed = customObservable.pipe(map(data => {
-      return `Round: ${data}`;
-    })).subscribe(
-      (input) => {
-        console.log(input);
-      },
-      error => {
-        console.log(error);
-      },
-      () => {
-        console.log("Completed!");
-      }
-    );
-    /*this.subscribed = interval(1000).subscribe(
-      (count => {
-        console.log(count);
-      })
-    )*/
+    this.subscriptions.addSubscription(
+      customObservable.pipe(map(data => {
+        return `Round: ${data}`;
+      })).subscribe(
+        (input) => {
+          console.log(input);
+        },
+        error => {
+          console.log(error);
+        },
+        () => {
+          console.log("Completed!");
+        }
+      ));
   }
 
   ngOnDestroy(): void {
-    this.subscribed.unsubscribe();
+    this.subscriptions.clear();
   }
 
 }

@@ -1,48 +1,49 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {IIngredient, Ingredient} from "../general-types/Ingredient";
 import {ShoppingListService} from "../services/shopping-list.service";
-import {LoggingService} from "../services/logging.service";
+import {ISubscriptionsStorage, SubscriptionsStorage} from "../general-types/SubscriptionStorage";
 
 @Component({
   selector: 'app-shopping-list',
   templateUrl: './shopping-list.component.html',
   styleUrls: ['./shopping-list.component.css']
 })
-export class ShoppingListComponent implements OnInit {
+export class ShoppingListComponent implements OnInit, OnDestroy {
   ingredients: IIngredient[] = [];
+  private subscriptions: ISubscriptionsStorage = new SubscriptionsStorage();
 
-  constructor(private shoppingListService: ShoppingListService, private log: LoggingService) {
+  constructor(private shoppingListService: ShoppingListService) {
   }
 
   ngOnInit(): void {
     this.ingredients = this.shoppingListService.getIngredients();
 
-    this.shoppingListService.onAddIngredient.subscribe(
-      (ingredients: Ingredient[]) => {
-        this.ingredients = ingredients;
-        this.log.WriteLog('onAddIngredient triggered.');
-      }
-    );
+    this.subscriptions.addSubscription(
+      this.shoppingListService.onAddIngredient.subscribe(
+        (ingredients: Ingredient[]) => {
+          this.ingredients = ingredients;
+        }));
 
-    this.shoppingListService.onIngredientsCleared.subscribe(
-      () => {
-        this.ingredients = [];
-        this.log.WriteLog('onIngredientsCleared triggered.');
-      }
-    );
+    this.subscriptions.addSubscription(
+      this.shoppingListService.onIngredientsCleared.subscribe(
+        () => {
+          this.ingredients = [];
+        }));
 
-    this.shoppingListService.onIngredientAmountChanged.subscribe(
-      (ingredients: Ingredient[]) => {
-        this.ingredients = ingredients;
-        this.log.WriteLog('onIngredientAmountChanged triggered.');
-      }
-    );
+    this.subscriptions.addSubscription(
+      this.shoppingListService.onIngredientAmountChanged.subscribe(
+        (ingredients: Ingredient[]) => {
+          this.ingredients = ingredients;
+        }));
 
-    this.shoppingListService.onUpdateIngredients.subscribe(
+    this.subscriptions.addSubscription(
+      this.shoppingListService.onUpdateIngredients.subscribe(
         (ingredients: IIngredient[]) => {
-        this.ingredients = ingredients;
-        this.log.WriteLog('onUpdateIngredients triggered.');
-      }
-    );
+          this.ingredients = ingredients;
+        }));
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.clear();
   }
 }
