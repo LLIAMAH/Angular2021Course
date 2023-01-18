@@ -28,6 +28,7 @@ export class FormTdComponent {
 
     console.log(form.valid);
     console.log(`${username}:${email}:${secret}`);
+    //this.signUpFom.resetForm();
   }
 
   onSuggestedClick(): void {
