@@ -14,8 +14,8 @@ export class FormPersonalTaskComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.personalTaskForm = new FormGroup({
       'projectName': new FormControl(null,  Validators.required, this.forbiddenName),
-      'email' : new FormControl(null, Validators.required),
-      'status' : new FormControl(null, Validators.required)
+      'email' : new FormControl(null, [Validators.required, Validators.email]),
+      'status' : new FormControl('Critical')
     });
   }
   ngOnDestroy(): void {
