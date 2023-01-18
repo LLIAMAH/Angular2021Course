@@ -29,6 +29,7 @@ import { ExperimentsObservablesUserComponent } from './experiments-observables/e
 import { FormsProcessingComponent } from './forms-processing/forms-processing.component';
 import { FormTdComponent } from './forms-processing/form-td/form-td.component';
 import { FormReactiveComponent } from './forms-processing/form-reactive/form-reactive.component';
+import { FormPersonalTaskComponent } from './forms-processing/form-personal-task/form-personal-task.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { FormReactiveComponent } from './forms-processing/form-reactive/form-rea
     ExperimentsObservablesUserComponent,
     FormsProcessingComponent,
     FormTdComponent,
-    FormReactiveComponent
+    FormReactiveComponent,
+    FormPersonalTaskComponent
   ],
   imports: [
     BrowserModule,

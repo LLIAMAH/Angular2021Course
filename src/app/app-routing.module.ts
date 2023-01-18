@@ -22,6 +22,7 @@ import {
 import {FormsProcessingComponent} from "./forms-processing/forms-processing.component";
 import {FormTdComponent} from "./forms-processing/form-td/form-td.component";
 import {FormReactiveComponent} from "./forms-processing/form-reactive/form-reactive.component";
+import {FormPersonalTaskComponent} from "./forms-processing/form-personal-task/form-personal-task.component";
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -47,7 +48,8 @@ const appRoutes: Routes = [
     ] },
   { path: 'form-processing', component: FormsProcessingComponent, children: [
       { path: 'form-td', component: FormTdComponent },
-      { path: 'form-reactive', component: FormReactiveComponent }
+      { path: 'form-reactive', component: FormReactiveComponent },
+      { path: 'form-personal-task', component: FormPersonalTaskComponent }
     ] },
   { path: 'not-found', component: PageNotFoundComponent },
   { path: '**', redirectTo: '/not-found' }
