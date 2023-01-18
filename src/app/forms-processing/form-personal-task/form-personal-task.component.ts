@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {AbstractControl, FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
-import {Observable} from "rxjs";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {CustomValidators} from "../../general-types/CustomValidators";
 
 @Component({
   selector: 'app-form-personal-task',
@@ -13,7 +13,7 @@ export class FormPersonalTaskComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.personalTaskForm = new FormGroup({
-      'projectName': new FormControl(null,  Validators.required, this.forbiddenName),
+      'projectName': new FormControl(null,  Validators.required, CustomValidators.invalidProjectName),
       'email' : new FormControl(null, [Validators.required, Validators.email]),
       'status' : new FormControl('Critical')
     });
@@ -26,16 +26,6 @@ export class FormPersonalTaskComponent implements OnInit, OnDestroy {
     let email = this.personalTaskForm.value.email;
     let status = this.personalTaskForm.value.status;
     console.log(`${projectName}:${email}:${status}`);
-  }
-
-  forbiddenName(control: AbstractControl<any, any>): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {
-    return new Promise((resolve, reject) => {
-      if (control.value === 'Test') {
-        resolve({'projectNameForbidden': true});
-      } else {
-        resolve(null);
-      }
-    });
   }
 
 }
