@@ -12,21 +12,21 @@ export class ShoppingListService {
     new Ingredient('Tomatoes', 10)
   ];
 
-  onAddIngredient: Subject<Ingredient[]> = new Subject<Ingredient[]>();
-  onIngredientAmountChanged: Subject<Ingredient[]> = new Subject<Ingredient[]>();
+  startedEditIngredient = new Subject<IIngredient>();
+
+  onIngredientAdded: Subject<Ingredient[]> = new Subject<Ingredient[]>();
+  onIngredientChanged: Subject<Ingredient[]> = new Subject<Ingredient[]>();
   onIngredientsCleared: Subject<void> = new Subject<void>();
   onUpdateIngredients: Subject<IIngredient[]> = new Subject<IIngredient[]>();
+  onUpdateList: Subject<void> = new Subject<void>();
 
-  //onUpdateIngredients: Subject<void> = new Subject<void>();
-
-  constructor(private log: LoggingService) {
-  }
+  constructor(private log: LoggingService) { }
 
   getIngredients(): IIngredient[] {
     return this.ingredients;
   }
 
-  AddIngredient(name: string, amount: number): void {
+  addIngredient(name: string, amount: number): void {
     if (name === undefined || amount === 0) {
       this.log.WriteLog('name or amount parameters is null -> AddIngredient aborting.');
       return;
@@ -36,15 +36,41 @@ export class ShoppingListService {
 
     if (found) {
       found.amount += amount;
-      this.onIngredientAmountChanged.next(this.ingredients);
+      this.onIngredientChanged.next(this.ingredients);
     } else {
       const ingredient = new Ingredient(name, amount);
       this.ingredients.push(ingredient);
-      this.onAddIngredient.next(this.ingredients);
+      this.onIngredientAdded.next(this.ingredients);
     }
   }
 
-  ClearIngredients(): void {
+  editIngredient(name: string, amount: number): void {
+    if (name === undefined || amount === 0) {
+      this.log.WriteLog('name or amount parameters is null -> AddIngredient aborting.');
+      return;
+    }
+
+    let found = this.ingredients.find(o => o.name === name);
+    if (found) {
+      found.name = name;
+      found.amount = amount;
+      this.onIngredientChanged.next(this.ingredients);
+    }
+  }
+
+  deleteIngredient(name: string): boolean {
+    if(name === '')
+      return false;
+    const found = this.ingredients.find(o=>o.name === name);
+    if(!found)
+      return false;
+    const index = this.ingredients.indexOf(found);
+    this.ingredients.slice(index, 1)
+    this.onUpdateIngredients.next(this.ingredients);
+    return true;
+  }
+
+  clearIngredients(): void {
     this.ingredients = [];
     this.onIngredientsCleared.next();
   }
@@ -53,4 +79,6 @@ export class ShoppingListService {
     this.ingredients = ingredients;
     this.onUpdateIngredients.next(this.ingredients);
   }
+
+
 }
