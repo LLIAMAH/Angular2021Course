@@ -1,9 +1,9 @@
 <div class="card mb-3"> <!-- *ngIf="recipe != undefined; else infoText">-->
-  <img style="max-height: 300px; max-width: 300px;" [src]="recipe!.imagePath" class="card-img-top" alt="Image for {{recipe!.name}}">
+  <img style="max-height: 300px; max-width: 300px;" [src]="recipe!.imagePath" class="card-img-top" alt="Image for {{recipe!.title}}">
   <div class="card-body">
     <div class="row">
       <div class="col">
-        <h5 class="card-title float-start">{{recipe!.name}}</h5>
+        <h5 class="card-title float-start">{{recipe!.title}}</h5>
         <div class="dropdown float-end">
         <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           Manage
