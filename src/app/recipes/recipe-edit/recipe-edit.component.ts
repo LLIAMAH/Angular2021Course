@@ -46,8 +46,11 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
         for(let ingredient of recipe.ingredients){
           recipeIngredients.push(
             new FormGroup({
-              'ingredient' : new FormControl(ingredient.name, Validators.required),
-              'amount': new FormControl(ingredient.amount)
+              'name' : new FormControl(ingredient.name, Validators.required),
+              'amount': new FormControl(ingredient.amount, [
+                Validators.required,
+                Validators.pattern(/^[1-9]+[0-9]*$/)
+              ])
             })
           )
         }
@@ -57,21 +60,11 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
     this.recipeForm = new FormGroup({
       'id': new FormControl(id),
       'title': new FormControl(title, Validators.required),
-      'description': new FormControl(description),
-      'imagePath': new FormControl(imagePath),
+      'description': new FormControl(description, Validators.required),
+      'imagePath': new FormControl(imagePath, Validators.required),
       'ingredients': recipeIngredients
-      /*'ingredients': new FormArray(
-        ingredients.map(ingredient => this.createIngredient(ingredient))
-      )*/
     })
   }
-
-  /*private createIngredient(ingredient: IIngredient): FormGroup {
-    return this.fb.group({
-      ingredient: [ingredient.name],
-      amount: [ingredient.amount]
-    })
-  }*/
 
   ngOnDestroy(): void {
     this.subscriptions.clear();
@@ -84,12 +77,10 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     if(this.recipeForm.valid){
       if (this.edit){
-        console.log('Status: Edit');
-        console.log(this.recipeForm);
+        this.recipeService.updateRecipe(this.id, this.recipeForm.value);
       }
       else {
-        console.log('Status: New');
-        console.log(this.recipeForm);
+        this.recipeService.addRecipe(this.recipeForm.value);
       }
     }
   }
@@ -98,8 +89,15 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
     return (this.recipeForm.get('ingredients') as FormArray).controls;
   }
 
-  /*onAddIngredient() {
-    const formControl = new FormControl(null, Validators.required);
-    (<FormArray>this.recipeForm.get('ingredients')).push(formControl);
-  }*/
+  onAddIngredient() {
+    (<FormArray>this.recipeForm.get('ingredients')).push(
+      new FormGroup({
+        'name' : new FormControl(null, Validators.required),
+        'amount': new FormControl(null, [
+          Validators.required,
+          Validators.pattern(/^[1-9]+[0-9]*$/)
+        ])
+      })
+    );
+  }
 }

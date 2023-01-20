@@ -39,6 +39,7 @@ export class RecipeService {
   ];
 
   onRecipeSelected = new Subject<Recipe>();
+  onRecipesChanged = new Subject<Recipe[]>();
 
   constructor() {
   }
@@ -52,5 +53,30 @@ export class RecipeService {
       (r) => {
         return r.id === id;
       })!
+  }
+
+  getRecipeIndex(id: number): number {
+    return this.recipes.map((x) => {
+      return x.id;
+    }).indexOf(id);
+  }
+
+  addRecipe(recipe: Recipe): boolean {
+    recipe.id = Math.max(...this.recipes.map(o => {
+      return o.id
+    })) + 1;
+    this.recipes.push(recipe);
+    this.onRecipesChanged.next(this.recipes);
+    return true;
+  }
+
+  updateRecipe(id: number, recipe: Recipe): boolean {
+    let found = this.getRecipeIndex(id);
+    if (found > -1) {
+      this.recipes[found] = recipe;
+      this.onRecipesChanged.next(this.recipes);
+      return true;
+    }
+    return false;
   }
 }
