@@ -2,7 +2,7 @@
   <div class="col">
     <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
       <button class="btn btn-success my-1" type="submit" [disabled]="!recipeForm.valid">Save</button>
-      <button class="btn btn-secondary m-1">Cancel</button>
+      <button class="btn btn-secondary m-1" (click)="onCancel()">Cancel</button>
       <input type="hidden" formControlName="id">
       <div class="form-group">
         <label for="title">Title</label>
@@ -10,13 +10,13 @@
       </div>
       <div class="form-group">
         <label for="imagePath">Image path</label>
-        <input type="text" id="imagePath" class="form-control" formControlName="imagePath">
+        <input type="text" id="imagePath" class="form-control" formControlName="imagePath" #imagePath>
       </div>
-      <!--<div class="row">
+      <div class="row">
         <div class="col">
-          <img [src]="'recipeForm.value.imagePath'" alt="Image for recipe">
+          <img [src]="imagePath.value" alt="Image for recipe" style="max-width: 300px; max-height: 300px;">
         </div>
-      </div>-->
+      </div>
       <div class="form-group">
         <label for="description">Description</label>
         <textarea id="description" formControlName="description" cols="30" rows="5" class="form-control my-1"></textarea>
@@ -28,7 +28,7 @@
       </div>
       <div class="row">
         <div class="col" formArrayName="ingredients">
-          <div class="row" *ngFor="let ingredientCtrl of getIngredientCtrls(); let i = index" [formGroupName]="i">
+          <div class="row" *ngFor="let ingredientCtrl of getIngredientControls(); let i = index" [formGroupName]="i">
             <div class="col-8"><input type="text" class="form-control my-1" formControlName="name"></div>
             <div class="col-2"><input type="number" class="form-control my-1" formControlName="amount"></div>
             <div class="col-2"><button class="btn btn-danger my-1">X</button></div>

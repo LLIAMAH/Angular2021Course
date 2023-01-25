@@ -23,6 +23,8 @@ import {FormsProcessingComponent} from "./forms-processing/forms-processing.comp
 import {FormTdComponent} from "./forms-processing/form-td/form-td.component";
 import {FormReactiveComponent} from "./forms-processing/form-reactive/form-reactive.component";
 import {FormPersonalTaskComponent} from "./forms-processing/form-personal-task/form-personal-task.component";
+import {PipesExperimentsComponent} from "./pipes-experiments/pipes-experiments.component";
+import {ExperimentsHttpComponent} from "./experiments-http/experiments-http.component";
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -51,6 +53,8 @@ const appRoutes: Routes = [
       { path: 'form-reactive', component: FormReactiveComponent },
       { path: 'form-personal-task', component: FormPersonalTaskComponent }
     ] },
+  { path: 'pipes', component: PipesExperimentsComponent },
+  { path: 'web-processing', component: ExperimentsHttpComponent },
   { path: 'not-found', component: PageNotFoundComponent },
   { path: '**', redirectTo: '/not-found' }
 ];

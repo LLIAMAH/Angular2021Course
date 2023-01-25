@@ -3,6 +3,7 @@ import {Subscription} from "rxjs";
 export interface ISubscriptionsStorage {
   addSubscription(subscription: Subscription): void;
   clear(): void;
+  length(): number;
 }
 
 export class SubscriptionsStorage implements ISubscriptionsStorage {
@@ -19,5 +20,9 @@ export class SubscriptionsStorage implements ISubscriptionsStorage {
         pop!.unsubscribe();
       }
     }
+  }
+
+  length(): number{
+    return this.subscriptions.length;
   }
 }

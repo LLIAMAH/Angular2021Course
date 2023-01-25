@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col">
+    <input type="text" [(ngModel)]="filteringParam">
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <ul class="list-group">
+      <li class="list-group-item {{ getListBoxStatus(server.status) }}" *ngFor="let server of servers | filter: filteringParam">
+        <b>{{server.name }}</b> |
+        {{server.instanceType | uppercase}} |
+        <em>{{ server.started | date:'fullDate' | uppercase | shorten: 3 }}</em>
+      </li>
+    </ul>
+  </div>
+</div>

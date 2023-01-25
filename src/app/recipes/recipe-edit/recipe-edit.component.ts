@@ -16,7 +16,8 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
   private subscriptions: ISubscriptionsStorage = new SubscriptionsStorage();
   recipeForm!: FormGroup;
 
-  constructor(private route: ActivatedRoute, private recipeService: RecipeService) { }
+  constructor(private route: ActivatedRoute,
+              private recipeService: RecipeService) { }
 
   ngOnInit(): void {
     this.subscriptions.addSubscription(
@@ -83,9 +84,10 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
         this.recipeService.addRecipe(this.recipeForm.value);
       }
     }
+    this.clearChanges();
   }
 
-  getIngredientCtrls(): AbstractControl<any,any>[]{
+  getIngredientControls(): AbstractControl<any,any>[]{
     return (this.recipeForm.get('ingredients') as FormArray).controls;
   }
 
@@ -99,5 +101,13 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
         ])
       })
     );
+  }
+
+  private clearChanges(): void {
+    //this.router.navigate(['../'], {relativeTo: this.route});
+  }
+
+  onCancel() {
+    this.clearChanges();
   }
 }
