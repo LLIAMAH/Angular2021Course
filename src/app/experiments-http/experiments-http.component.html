@@ -1,29 +1,60 @@
 <div class="row">
   <div class="col">
-    <button class="btn btn-primary" (click)="onGetProjects()">Get projects</button>
+    <app-alert-control *ngIf="alertRequired" [message]="alert.message" [status]="alert.value"></app-alert-control>
   </div>
 </div>
+
 <div class="row">
   <div class="col">
-    <table class="table table-bordered table-striped table-hover">
-      <thead>
-      <tr class="table-dark">
-        <th>#</th><th>Name</th><th>Description</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let project of projects; let i = index">
-        <td>
-          {{project.id}}
-        </td>
-        <td>
-          {{project.name}}
-        </td>
-        <td>
-          {{project.description}}
-        </td>
-      </tr>
-      </tbody>
-    </table>
+    <div class="row">
+      <div class="col">
+        <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+          <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" name="title" ngModel>
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" rows="3" ngModel name="description"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Add Post</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="row">
+      <div class="col">
+        <button class="btn btn-primary" (click)="onGetPosts()">Get posts</button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <table class="table table-bordered table-striped table-hover">
+          <thead>
+          <tr class="table-dark">
+            <th>#</th><th>Title</th><th>Description</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let post of posts; let i = index">
+            <td>
+              {{post.id}}
+            </td>
+            <td>
+              {{post.title}}
+            </td>
+            <td>
+              {{post.description}}
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
+
+

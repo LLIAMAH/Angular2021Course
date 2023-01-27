@@ -35,6 +35,7 @@ import { ShortenPipe } from './pipes-experiments/shorten.pipe';
 import { FilterPipe } from './pipes-experiments/filter.pipe';
 import { ExperimentsHttpComponent } from './experiments-http/experiments-http.component';
 import { HttpClientModule } from "@angular/common/http";
+import { AlertControlComponent } from './alert-control/alert-control.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { HttpClientModule } from "@angular/common/http";
     PipesExperimentsComponent,
     ShortenPipe,
     FilterPipe,
-    ExperimentsHttpComponent
+    ExperimentsHttpComponent,
+    AlertControlComponent
   ],
   imports: [
     BrowserModule,
