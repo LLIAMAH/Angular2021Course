@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {EnumResponseStatus, ResponseStatus} from "../general-types/IResponse";
+import {EnumResponseStatus, ResponseStatus} from "../general-types/IResponses";
 import {IPost, Post} from "./types/Post";
 import {PostsService} from "../services/posts.service";
 import {NgForm} from "@angular/forms";
@@ -35,7 +35,7 @@ export class ExperimentsHttpComponent implements OnInit, OnDestroy {
   }
 
   onGetPosts(): void {
-    this.postsService.fetchPosts().subscribe((response:IResponsePost)  => {
+    this.postsService.fetchPosts().subscribe((response: IResponsePost) => {
       this.posts = response.data;
       this.alert = new ResponseStatus(response.status.value, response.status.message);
       this.alertRequired = this.alert.isAlertReq();
@@ -46,15 +46,20 @@ export class ExperimentsHttpComponent implements OnInit, OnDestroy {
     this.postsService.createAndStorePost(postData.title, postData.description);
   }
 
-  onSubmit(f: NgForm) {
+  sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
+
+  async onSubmit(f: NgForm) {
     if (f.valid) {
+      console.log('Add post started');
       const title = f.value.title;
       const description = f.value.description;
       const post = new Post(0, title, description)
       console.log(post);
       this.onCreatePost(post);
-      f.resetForm();
+      //await this.sleep(2000);
       this.onGetPosts();
+      f.resetForm();
+      console.log('Add post finished');
       return;
     }
     console.log("Form invalid");

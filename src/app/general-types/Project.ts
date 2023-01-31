@@ -1,4 +1,4 @@
-import {IResponse} from "./IResponse";
+import {IResponseMany} from "./IResponses";
 
 export interface IProject{
   id: number;
@@ -6,7 +6,7 @@ export interface IProject{
   description: string;
 }
 
-export interface IResponseProject extends IResponse<IProject> { }
+export interface IResponseProject extends IResponseMany<IProject> { }
 
 export class Project implements IProject {
   constructor(public id: number, public name: string, public description: string) { }

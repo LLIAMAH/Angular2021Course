@@ -1,9 +1,24 @@
-import {IResponse, ResponseStatus} from "../../general-types/IResponse";
+import {IResponseMany, IResponseOne, ResponseStatus} from "../../general-types/IResponses";
 import {Post} from "./Post";
+import {Recipe} from "../../general-types/Recipe";
 
-export interface IResponsePost extends IResponse<Post> { }
+export interface IResponsePost extends IResponseMany<Post> { }
 
 export class ResponsePost implements IResponsePost {
   constructor(public data: Post[],
+              public status: ResponseStatus) { }
+}
+
+export interface IResponseRecipes extends IResponseMany<Recipe> { }
+
+export class ResponseRecipes implements IResponseRecipes {
+  constructor(public data: Recipe[],
+              public status: ResponseStatus) { }
+}
+
+export interface IResponseRecipe extends IResponseOne<Recipe> { }
+
+export class ResponseRecipe implements IResponseRecipe {
+  constructor(public data: Recipe,
               public status: ResponseStatus) { }
 }

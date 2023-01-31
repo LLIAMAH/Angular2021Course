@@ -34,8 +34,10 @@ import { PipesExperimentsComponent } from './pipes-experiments/pipes-experiments
 import { ShortenPipe } from './pipes-experiments/shorten.pipe';
 import { FilterPipe } from './pipes-experiments/filter.pipe';
 import { ExperimentsHttpComponent } from './experiments-http/experiments-http.component';
-import { HttpClientModule } from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { AlertControlComponent } from './alert-control/alert-control.component';
+import {AuthInterceptor} from "./experiments-http/types/auth.interceptor";
+import {LoggingInterceptor} from "./experiments-http/types/logging.interceptor";
 
 @NgModule({
   declarations: [
@@ -79,6 +81,8 @@ import { AlertControlComponent } from './alert-control/alert-control.component';
     HttpClientModule
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true },
     LoggingService
   ],
   bootstrap: [AppComponent]

@@ -25,6 +25,7 @@ import {FormReactiveComponent} from "./forms-processing/form-reactive/form-react
 import {FormPersonalTaskComponent} from "./forms-processing/form-personal-task/form-personal-task.component";
 import {PipesExperimentsComponent} from "./pipes-experiments/pipes-experiments.component";
 import {ExperimentsHttpComponent} from "./experiments-http/experiments-http.component";
+import {RecipesResolver} from "./services/recipes.resolver";
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -33,8 +34,8 @@ const appRoutes: Routes = [
   { path: 'recipes', component: RecipesComponent, children: [
       { path: '', component: RecipeItemDefaultComponent },
       { path: 'new', component: RecipeEditComponent },
-      { path: ':id', component: RecipeDetailComponent },
-      { path: ':id/edit', component: RecipeEditComponent }
+      { path: ':id', component: RecipeDetailComponent, resolve: [RecipesResolver] },
+      { path: ':id/edit', component: RecipeEditComponent, resolve: [RecipesResolver] }
     ] },
   { path: 'shopping-list', component: ShoppingListComponent },
   { path: 'servers', component: ServersComponent },
