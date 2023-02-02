@@ -4,7 +4,7 @@ import {IPost, Post} from "./types/Post";
 import {PostsService} from "../services/posts.service";
 import {NgForm} from "@angular/forms";
 import {ISubscriptionsStorage, SubscriptionsStorage} from "../general-types/SubscriptionStorage";
-import {IResponsePost} from "./types/IResponsePost";
+import {IResponsePosts} from "./types/IResponsePost";
 
 @Component({
   selector: 'app-experiments-http',
@@ -35,7 +35,7 @@ export class ExperimentsHttpComponent implements OnInit, OnDestroy {
   }
 
   onGetPosts(): void {
-    this.postsService.fetchPosts().subscribe((response: IResponsePost) => {
+    this.postsService.fetchPosts().subscribe((response: IResponsePosts) => {
       this.posts = response.data;
       this.alert = new ResponseStatus(response.status.value, response.status.message);
       this.alertRequired = this.alert.isAlertReq();
@@ -43,7 +43,13 @@ export class ExperimentsHttpComponent implements OnInit, OnDestroy {
   }
 
   onCreatePost(postData: Post) {
-    this.postsService.createAndStorePost(postData.title, postData.description);
+    this.postsService.createAndStorePost(postData.title, postData.description).subscribe(
+      (response:IResponsePosts) => {
+        this.posts = response.data;
+        this.alert = new ResponseStatus(response.status.value, response.status.message);
+        this.alertRequired = this.alert.isAlertReq();
+      }
+    )
   }
 
   sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
@@ -56,8 +62,6 @@ export class ExperimentsHttpComponent implements OnInit, OnDestroy {
       const post = new Post(0, title, description)
       console.log(post);
       this.onCreatePost(post);
-      //await this.sleep(2000);
-      this.onGetPosts();
       f.resetForm();
       console.log('Add post finished');
       return;

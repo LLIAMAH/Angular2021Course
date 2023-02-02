@@ -38,6 +38,12 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { AlertControlComponent } from './alert-control/alert-control.component';
 import {AuthInterceptor} from "./experiments-http/types/auth.interceptor";
 import {LoggingInterceptor} from "./experiments-http/types/logging.interceptor";
+import { AuthComponent } from './auth/auth.component';
+import { DataCommunicationComponent } from './data-communication/data-communication.component';
+import { DataParentComponent } from './data-communication/data-parent/data-parent.component';
+import { DataChild1Component } from './data-communication/data-child1/data-child1.component';
+import { DataChild2Component } from './data-communication/data-child2/data-child2.component';
+import { DataChild2ItemComponent } from './data-communication/data-child2/data-child2-item/data-child2-item.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +76,13 @@ import {LoggingInterceptor} from "./experiments-http/types/logging.interceptor";
     ShortenPipe,
     FilterPipe,
     ExperimentsHttpComponent,
-    AlertControlComponent
+    AlertControlComponent,
+    AuthComponent,
+    DataCommunicationComponent,
+    DataParentComponent,
+    DataChild1Component,
+    DataChild2Component,
+    DataChild2ItemComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import {BehaviorSubject} from "rxjs";
+import {IUser} from "../general-types/User";
 
 @Injectable({
   providedIn: 'root'
@@ -6,6 +8,7 @@ import { Injectable } from '@angular/core';
 export class AuthService {
 
   loggedIn: boolean = false;
+  user!: BehaviorSubject<IUser>;
 
   constructor() {
   }

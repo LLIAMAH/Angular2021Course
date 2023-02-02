@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col">
+    <app-data-parent></app-data-parent>
+  </div>
+  <div class="col">
+    <div class="row">
+      <div class="col">
+        <app-data-child1 (dataItem)="onProcessDataItem($event)"></app-data-child1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <app-data-child2 [dataItems]="dataItems"></app-data-child2>
+      </div>
+    </div>
+  </div>
+</div>

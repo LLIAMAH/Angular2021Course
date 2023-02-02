@@ -11,13 +11,13 @@ export class UsersService {
   constructor() {
     if (this.users.length === 0) {
       this.users.push(...[
-        new User(1, 'User1', 'Vasiliy', 'Himchenko', new Date('1982-10-25')),
-        new User(2, 'User2', 'Valeriy', 'Kovalenko', new Date('1983-02-28')),
-        new User(3, 'User3', 'Vitaliy', 'Ozornin', new Date('1978-06-24')),
-        new User(4, 'User4', 'Alexandr', 'Timoshenko', new Date('1980-07-08')),
-        new User(5, 'User5', 'Oleg', 'Divov', new Date('1965-12-25')),
-        new User(6, 'User6', 'Michail', 'Lantsov', new Date('1990-01-02')),
-        new User(7, 'User7', 'Dem', 'Mihailov', new Date('1980-04-13'))
+        new User(1, 'User1', 'Vasiliy', 'Himchenko', new Date('1982-10-25'), 'token'),
+        new User(2, 'User2', 'Valeriy', 'Kovalenko', new Date('1983-02-28'), 'token'),
+        new User(3, 'User3', 'Vitaliy', 'Ozornin', new Date('1978-06-24'), 'token'),
+        new User(4, 'User4', 'Alexandr', 'Timoshenko', new Date('1980-07-08'), 'token'),
+        new User(5, 'User5', 'Oleg', 'Divov', new Date('1965-12-25'), 'token'),
+        new User(6, 'User6', 'Michail', 'Lantsov', new Date('1990-01-02'), 'token'),
+        new User(7, 'User7', 'Dem', 'Mihailov', new Date('1980-04-13'), 'token')
       ])
     }
   }
@@ -37,7 +37,7 @@ export class UsersService {
         return o.id
       });
       const maxId = Math.max(...arr) + 1;
-      this.users.push(new User(maxId, login, firstName, lastName, birthDate));
+      this.users.push(new User(maxId, login, firstName, lastName, birthDate, 'token'));
       return true;
     }
 

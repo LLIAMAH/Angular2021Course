@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
-import {IResponsePost} from "../experiments-http/types/IResponsePost";
-import {catchError, Observable, retry, Subject, throwError} from "rxjs";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {IResponsePosts, ResponsePosts} from "../experiments-http/types/IResponsePost";
+import {catchError, exhaustMap, Observable, of, retry, Subject, take, throwError} from "rxjs";
 import {Post} from "../experiments-http/types/Post";
 import {map} from "rxjs/operators";
 import {EnumResponseStatus, ResponseStatus} from "../general-types/IResponses";
@@ -15,30 +15,31 @@ export class PostsService {
 
   constructor(private httpClient: HttpClient) { }
 
-  createAndStorePost(title: string, content: string) {
-    if(title === '' || content === '')
-      return new ResponseStatus(EnumResponseStatus.Error, 'title or content values - is empty.');
+  createAndStorePost(title: string, content: string): Observable<IResponsePosts> {
+    if (title === '' || content === '')
+      return of(new ResponsePosts([], new ResponseStatus(EnumResponseStatus.Error, 'title or content values - are empty.')));
 
     const postData: Post = new Post(0, title, content);
-    return this.httpClient.post<IResponsePost>('https://localhost:7035/Posts/', postData)
-      .subscribe(
-        (response: IResponsePost) => {
-          console.log(response);
-          return response;
-        });
+    return this.httpClient.post<IResponsePosts>('https://localhost:7035/Posts/', postData)
+      .pipe(
+        take(1),
+        exhaustMap((response: IResponsePosts) => {
+          return this.fetchPosts()
+        })
+      );
+    // .subscribe(
+    //   (response: IResponsePosts) => {
+    //     console.log(response);
+    //     return response;
+    //   });
   }
 
-  fetchPosts(): Observable<IResponsePost> {
-    return this.httpClient.get<IResponsePost>('https://localhost:7035/Posts/',{
-      headers: new HttpHeaders({
-
-
-      })
-    })
+  fetchPosts(): Observable<IResponsePosts> {
+    return this.httpClient.get<IResponsePosts>('https://localhost:7035/Posts/')
       .pipe(
         retry(3),
         catchError(this.handleError),
-        map((responseData: IResponsePost) => {
+        map((responseData: IResponsePosts) => {
         return responseData;
       }));
   }

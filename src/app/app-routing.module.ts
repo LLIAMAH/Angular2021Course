@@ -26,6 +26,8 @@ import {FormPersonalTaskComponent} from "./forms-processing/form-personal-task/f
 import {PipesExperimentsComponent} from "./pipes-experiments/pipes-experiments.component";
 import {ExperimentsHttpComponent} from "./experiments-http/experiments-http.component";
 import {RecipesResolver} from "./services/recipes.resolver";
+import {AuthComponent} from "./auth/auth.component";
+import {DataCommunicationComponent} from "./data-communication/data-communication.component";
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -56,6 +58,8 @@ const appRoutes: Routes = [
     ] },
   { path: 'pipes', component: PipesExperimentsComponent },
   { path: 'web-processing', component: ExperimentsHttpComponent },
+  { path: 'auth', component: AuthComponent },
+  { path: 'data-communication', component: DataCommunicationComponent },
   { path: 'not-found', component: PageNotFoundComponent },
   { path: '**', redirectTo: '/not-found' }
 ];
