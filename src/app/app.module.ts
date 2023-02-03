@@ -7,10 +7,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './header/header.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { RecipesComponent } from './recipes/recipes.component';
-import { RecipeListComponent } from "./recipes/recipe-list/recipe-list.component";
-import { RecipeItemComponent } from "./recipes/recipe-list/recipe-item/recipe-item.component";
-import { RecipeDetailComponent } from "./recipes/recipe-detail/recipe-detail.component";
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { LoggingService } from "./services/logging.service";
 import { ServersComponent } from './servers/servers.component';
@@ -21,8 +17,6 @@ import { HomeComponent } from './home/home.component';
 import { UsersComponent } from './users/users.component';
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { RecipeItemDefaultComponent } from './recipes/recipe-item-default/recipe-item-default.component';
-import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { ExperimentsObservablesComponent } from './experiments-observables/experiments-observables.component';
 import { ExperimentsObservablesDefaultComponent } from './experiments-observables/experiments-observables-default/experiments-observables-default.component';
 import { ExperimentsObservablesUserComponent } from './experiments-observables/experiments-observables-user/experiments-observables-user.component';
@@ -44,16 +38,14 @@ import { DataParentComponent } from './data-communication/data-parent/data-paren
 import { DataChild1Component } from './data-communication/data-child1/data-child1.component';
 import { DataChild2Component } from './data-communication/data-child2/data-child2.component';
 import { DataChild2ItemComponent } from './data-communication/data-child2/data-child2-item/data-child2-item.component';
+import { RecipesModule } from "./recipes/recipes.module";
+import {RecipesRoutingModule} from "./recipes/recipes-routing.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     ShoppingListComponent,
-    RecipeListComponent,
-    RecipeItemComponent,
-    RecipeDetailComponent,
-    RecipesComponent,
     ShoppingEditComponent,
     ServersComponent,
     ServerEditComponent,
@@ -63,8 +55,6 @@ import { DataChild2ItemComponent } from './data-communication/data-child2/data-c
     UsersComponent,
     UserDetailComponent,
     PageNotFoundComponent,
-    RecipeItemDefaultComponent,
-    RecipeEditComponent,
     ExperimentsObservablesComponent,
     ExperimentsObservablesDefaultComponent,
     ExperimentsObservablesUserComponent,
@@ -90,7 +80,9 @@ import { DataChild2ItemComponent } from './data-communication/data-child2/data-c
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    RecipesModule,
+    RecipesRoutingModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

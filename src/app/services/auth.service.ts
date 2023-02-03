@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import {BehaviorSubject} from "rxjs";
 import {IUser} from "../general-types/User";
 
+type IUserNullable = IUser | null;
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
   loggedIn: boolean = false;
-  user!: BehaviorSubject<IUser>;
+  user: BehaviorSubject<IUserNullable> = new BehaviorSubject<IUserNullable>(null);
 
   constructor() {
   }

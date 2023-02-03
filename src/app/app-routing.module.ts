@@ -28,12 +28,16 @@ import {ExperimentsHttpComponent} from "./experiments-http/experiments-http.comp
 import {RecipesResolver} from "./services/recipes.resolver";
 import {AuthComponent} from "./auth/auth.component";
 import {DataCommunicationComponent} from "./data-communication/data-communication.component";
+import {AuthGuard} from "./auth/auth.guard";
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   //{ path: '', redirectTo: '/recipes', pathMatch: 'full' },
   //{ path: 'recipes', component: RecipesComponent },
-  { path: 'recipes', component: RecipesComponent, children: [
+  { path: 'recipes',
+    component: RecipesComponent,
+    canActivate: [AuthGuard],
+    children: [
       { path: '', component: RecipeItemDefaultComponent },
       { path: 'new', component: RecipeEditComponent },
       { path: ':id', component: RecipeDetailComponent, resolve: [RecipesResolver] },
@@ -65,7 +69,6 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  //imports: [RouterModule.forRoot(appRoutes, {useHash: true})],
   imports: [RouterModule.forRoot(appRoutes)],
   exports: [RouterModule]
 })

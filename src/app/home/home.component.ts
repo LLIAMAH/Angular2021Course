@@ -10,11 +10,15 @@ import {AuthService} from "../services/auth.service";
 export class HomeComponent {
 
   isLoggedOn: boolean = false;
+  error: string | null = null;
 
   constructor(private router: Router, private authService: AuthService) {  }
 
   onClick(itemToMoveOn: string) {
-    this.router.navigate([`/${itemToMoveOn}`]);
+    if (itemToMoveOn)
+      this.error = 'Some strange message';
+    else
+      this.router.navigate([`/${itemToMoveOn}`]);
   }
 
   onLogin() {
@@ -25,5 +29,9 @@ export class HomeComponent {
   onLogOut() {
     this.authService.logout();
     this.isLoggedOn = this.authService.loggedIn;
+  }
+
+  onHandleAlertClose() {
+    this.error = null;
   }
 }

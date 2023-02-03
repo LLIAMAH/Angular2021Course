@@ -26,6 +26,14 @@
       <li><button class="btn btn-primary" (click)="onClick('recipes')">Recipes</button></li>
       <li><button class="btn btn-primary" (click)="onClick('shopping-list')">Shopping list</button></li>
       <li><button class="btn btn-primary" (click)="onClick('servers')">Servers</button></li>
+      <li><button class="btn btn-primary" (click)="onClick('error')">Show error</button></li>
     </ul>
   </div>
 </div>
+<app-alert-control [message]="error" *ngIf="error" (close)="onHandleAlertClose()"></app-alert-control>
+
+<br/>
+&#128081;
+<br/>
+&#x1F451;
+

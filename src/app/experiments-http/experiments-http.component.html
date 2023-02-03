@@ -1,11 +1,5 @@
 <div class="row">
   <div class="col">
-    <app-alert-control *ngIf="alertRequired" [message]="alert.message" [status]="alert.value"></app-alert-control>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col">
     <div class="row">
       <div class="col">
         <form (ngSubmit)="onSubmit(f)" #f="ngForm">

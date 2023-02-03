@@ -1,5 +1,9 @@
-<div class="alert alert-dismissible fade show" [ngClass]="alertClass" role="alert">
-  {{message}}  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<div class="backdrop"></div>
+<div class="alert-box">
+  <p>{{ message }}</p>
+  <div class="alert-box-actions">
+    <button class="btn btn-primary" (click)="onClose()">Close</button>
+  </div>
 </div>
 
 
