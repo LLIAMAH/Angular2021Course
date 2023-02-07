@@ -6,8 +6,6 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './header/header.component';
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { LoggingService } from "./services/logging.service";
 import { ServersComponent } from './servers/servers.component';
 import { ServerEditComponent } from './servers/server-edit/server-edit.component';
@@ -30,23 +28,21 @@ import { FilterPipe } from './pipes-experiments/filter.pipe';
 import { ExperimentsHttpComponent } from './experiments-http/experiments-http.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { AlertControlComponent } from './alert-control/alert-control.component';
-import {AuthInterceptor} from "./experiments-http/types/auth.interceptor";
 import {LoggingInterceptor} from "./experiments-http/types/logging.interceptor";
-import { AuthComponent } from './auth/auth.component';
 import { DataCommunicationComponent } from './data-communication/data-communication.component';
 import { DataParentComponent } from './data-communication/data-parent/data-parent.component';
 import { DataChild1Component } from './data-communication/data-child1/data-child1.component';
 import { DataChild2Component } from './data-communication/data-child2/data-child2.component';
 import { DataChild2ItemComponent } from './data-communication/data-child2/data-child2-item/data-child2-item.component';
 import { RecipesModule } from "./recipes/recipes.module";
-import {RecipesRoutingModule} from "./recipes/recipes-routing.module";
+import { RecipesRoutingModule } from "./recipes/recipes-routing.module";
+import { ShoppingListModule } from  "./shopping-list/shopping-list.module";
+import { ShoppingListRoutingModule } from "./shopping-list/shopping-list-routing.module"
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    ShoppingListComponent,
-    ShoppingEditComponent,
     ServersComponent,
     ServerEditComponent,
     ServersListComponent,
@@ -67,7 +63,6 @@ import {RecipesRoutingModule} from "./recipes/recipes-routing.module";
     FilterPipe,
     ExperimentsHttpComponent,
     AlertControlComponent,
-    AuthComponent,
     DataCommunicationComponent,
     DataParentComponent,
     DataChild1Component,
@@ -82,10 +77,11 @@ import {RecipesRoutingModule} from "./recipes/recipes-routing.module";
     NgbModule,
     HttpClientModule,
     RecipesModule,
-    RecipesRoutingModule
+    RecipesRoutingModule,
+    ShoppingListModule,
+    ShoppingListRoutingModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true },
     LoggingService
   ],

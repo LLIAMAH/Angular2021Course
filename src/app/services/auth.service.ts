@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {BehaviorSubject} from "rxjs";
 import {IUser} from "../general-types/User";
 
-type IUserNullable = IUser | null;
+export type IUserNullable = IUser | null;
 
 @Injectable({
   providedIn: 'root'
@@ -26,10 +26,7 @@ export class AuthService {
   isAuthenticated(): Promise<boolean> {
     return new Promise<boolean>(
       (resolve, reject) => {
-        setTimeout(() => {
-            resolve(this.loggedIn);
-          },
-          800)
+        resolve(this.loggedIn);
       }
     );
   }

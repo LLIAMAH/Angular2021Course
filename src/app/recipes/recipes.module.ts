@@ -9,16 +9,19 @@ import {RecipeEditComponent} from "./recipe-edit/recipe-edit.component";
 import {RouterModule} from "@angular/router";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {AuthComponent} from "../auth/auth.component";
+import {AuthInterceptor} from "../auth/auth.interceptor";
 
 @NgModule({
   declarations: [
+    RecipesComponent,
     RecipeListComponent,
     RecipeItemComponent,
     RecipeDetailComponent,
-    RecipesComponent,
     RecipeItemDefaultComponent,
-    RecipeEditComponent
+    RecipeEditComponent,
+    AuthComponent
   ],
   imports: [
     CommonModule,
@@ -28,13 +31,8 @@ import {HttpClientModule} from "@angular/common/http";
     HttpClientModule,
     RouterModule
   ],
-  exports: [
-    RecipeListComponent,
-    RecipeItemComponent,
-    RecipeDetailComponent,
-    RecipesComponent,
-    RecipeItemDefaultComponent,
-    RecipeEditComponent
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ]
 })
 export class RecipesModule { }

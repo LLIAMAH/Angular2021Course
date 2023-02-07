@@ -6,6 +6,7 @@ import {RecipeItemDefaultComponent} from "./recipe-item-default/recipe-item-defa
 import {RecipeEditComponent} from "./recipe-edit/recipe-edit.component";
 import {RecipeDetailComponent} from "./recipe-detail/recipe-detail.component";
 import {RecipesResolver} from "../services/recipes.resolver";
+import {AuthComponent} from "../auth/auth.component";
 
 const recipesChildRoutes: Routes = [
   { path: 'recipes',
@@ -16,7 +17,8 @@ const recipesChildRoutes: Routes = [
       { path: 'new', component: RecipeEditComponent },
       { path: ':id', component: RecipeDetailComponent, resolve: [RecipesResolver] },
       { path: ':id/edit', component: RecipeEditComponent, resolve: [RecipesResolver] }
-    ] }
+    ] },
+  { path: 'auth', component: AuthComponent },
 ];
 
 @NgModule({
