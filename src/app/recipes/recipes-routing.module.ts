@@ -11,7 +11,7 @@ import {AuthComponent} from "../auth/auth.component";
 const recipesChildRoutes: Routes = [
   { path: 'recipes',
     component: RecipesComponent,
-    canActivate: [AuthGuard],
+    //canActivate: [AuthGuard],
     children: [
       { path: '', component: RecipeItemDefaultComponent },
       { path: 'new', component: RecipeEditComponent },

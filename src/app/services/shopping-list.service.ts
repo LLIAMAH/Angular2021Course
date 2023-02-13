@@ -44,16 +44,11 @@ export class ShoppingListService {
     }
   }
 
-  editIngredient(name: string, amount: number): void {
-    if (name === undefined || amount === 0) {
-      this.log.WriteLog('name or amount parameters is null -> AddIngredient aborting.');
-      return;
-    }
-
-    let found = this.ingredients.find(o => o.name === name);
+  editIngredient(item: Ingredient): void {
+    let found = this.ingredients.find(o=>o.name === item.name);
     if (found) {
-      found.name = name;
-      found.amount = amount;
+      found.name = item.name;
+      found.amount = item.amount;
       this.onIngredientChanged.next(this.ingredients);
     }
   }

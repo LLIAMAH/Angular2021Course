@@ -2,7 +2,10 @@ import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ShoppingListService} from "../../services/shopping-list.service";
 import {NgForm} from "@angular/forms";
 import {ISubscriptionsStorage, SubscriptionsStorage} from "../../general-types/SubscriptionStorage";
-import {IIngredient} from "../../general-types/Ingredient";
+import {IIngredient, Ingredient} from "../../general-types/Ingredient";
+import {Store} from "@ngrx/store";
+import {IngredientsState} from "../store/shopping-list.reducer";
+import * as shoppingListActions from "../store/shopping-list.actions";
 
 @Component({
   selector: 'app-shopping-edit',
@@ -15,7 +18,8 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   editMode: boolean = false;
   editedItem!: IIngredient;
 
-  constructor(private shoppingListService: ShoppingListService) { }
+  constructor(private shoppingListService: ShoppingListService,
+              private store: Store<{ shoppingList: IngredientsState }>) { }
   onClearItems(): void {
     this.editMode = false;
     this.form.reset();
@@ -23,10 +27,14 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
 
   onAddItem(f: NgForm) {
     const value = f.value;
-    if (this.editMode)
-      this.shoppingListService.editIngredient(value.name, Number(value.amount));
-    else
-      this.shoppingListService.addIngredient(value.name, Number(value.amount));
+    const ingredient = new Ingredient(value.name, Number(value.amount));
+    if (this.editMode) {
+      this.shoppingListService.editIngredient(ingredient);
+    } else {
+      this.store.dispatch(new shoppingListActions.AddIngredient(ingredient));
+      //this.shoppingListService.addIngredient(value.name, Number(value.amount));
+    }
+
     this.editMode = false;
     f.reset();
   }

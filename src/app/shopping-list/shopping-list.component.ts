@@ -1,7 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {IIngredient, Ingredient} from "../general-types/Ingredient";
+import {IIngredient} from "../general-types/Ingredient";
 import {ShoppingListService} from "../services/shopping-list.service";
-import {ISubscriptionsStorage, SubscriptionsStorage} from "../general-types/SubscriptionStorage";
+import {Store} from "@ngrx/store";
+import {IngredientsState} from "./store/shopping-list.reducer";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-shopping-list',
@@ -9,16 +11,18 @@ import {ISubscriptionsStorage, SubscriptionsStorage} from "../general-types/Subs
   styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent implements OnInit, OnDestroy {
-  ingredients: IIngredient[] = [];
-  private subscriptions: ISubscriptionsStorage = new SubscriptionsStorage();
+  stateObservable!: Observable<IngredientsState>;
+  //private subscriptions: ISubscriptionsStorage = new SubscriptionsStorage();
 
-  constructor(private shoppingListService: ShoppingListService) {
+  constructor(private shoppingListService: ShoppingListService,
+              private store: Store<{ shoppingList: IngredientsState }>) {
   }
 
   ngOnInit(): void {
-    this.ingredients = this.shoppingListService.getIngredients();
+    this.stateObservable =  this.store.select('shoppingList');
+    //this.ingredients = this.shoppingListService.getIngredients();
 
-    this.subscriptions.addSubscription(
+    /*this.subscriptions.addSubscri0ption(
       this.shoppingListService.onIngredientAdded.subscribe(
         (ingredients: Ingredient[]) => {
           this.ingredients = ingredients;
@@ -40,11 +44,11 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
       this.shoppingListService.onUpdateIngredients.subscribe(
         (ingredients: IIngredient[]) => {
           this.ingredients = ingredients;
-        }));
+        }));*/
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.clear();
+    //this.subscriptions.clear();
   }
 
   onEditItem(ingredient: IIngredient) {
