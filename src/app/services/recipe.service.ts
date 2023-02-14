@@ -41,8 +41,7 @@ export class RecipeService {
   onRecipeSelected = new Subject<Recipe>();
   onRecipesChanged = new Subject<Recipe[]>();
 
-  constructor() {
-  }
+  constructor() { }
 
   getRecipes(): Recipe[] {
     return this.recipes.slice();

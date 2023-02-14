@@ -7,7 +7,6 @@ export interface AppState {
   shoppingList: IngredientsState;
 }
 
-
 export const reducers: ActionReducerMap<AppState, any> = {
   shoppingList: shoppingListReducer
 }

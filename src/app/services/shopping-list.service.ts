@@ -74,6 +74,4 @@ export class ShoppingListService {
     this.ingredients = ingredients;
     this.onUpdateIngredients.next(this.ingredients);
   }
-
-
 }

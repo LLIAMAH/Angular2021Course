@@ -20,6 +20,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.stateObservable =  this.store.select('shoppingList');
+    //this.store.select('shoppingList').subscribe(); // if we need observable
     //this.ingredients = this.shoppingListService.getIngredients();
 
     /*this.subscriptions.addSubscri0ption(
